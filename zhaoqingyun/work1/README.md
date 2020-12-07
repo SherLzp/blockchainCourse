@@ -12,7 +12,9 @@ sha256.cpp是SHA256算法，输入一段内容会输出这段内容的hash值，
 
 chain.cpp是实验说明SHA256如何用于区块数据锁定，不打开140行的注释前是修改前的模拟区块链内容，打开注释后是对某一块内容进行微小修改后区块链的内容，通过对比可以发现SHA256对微小改动做出的反应
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20201208003116194.png" alt="image-20201208003116194" style="zoom:50%;" />
+<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20201208010239270.png" alt="image-20201208010239270" style="zoom:67%;" />
+
+
 
 对数据做出修改之前的区块链内容如下：
 
