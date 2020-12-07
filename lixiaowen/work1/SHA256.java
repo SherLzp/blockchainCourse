@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
 
 public class SHA256 {
 
@@ -23,22 +25,79 @@ public class SHA256 {
             0xa4506ceb, 0xbef9a3f7, 0xc67178f2 };
 
     public static void main(String[] args) {
+        JFrame jf = new JFrame("SHA256");
+        jf.setSize(600, 300);
+        jf.setLocationRelativeTo(null);
+        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        final CardLayout layout = new CardLayout(10, 10);
+        final JPanel panel = new JPanel(layout);
+
+        Box vBox1 = Box.createVerticalBox();
+        Box vBox2 = Box.createVerticalBox();
+
+        JLabel result = new JLabel();
+        result.setText("答案在这里显示");
+        result.setFont(new Font(null, Font.PLAIN, 15));
+
+        JButton btnR = new JButton("return");
+        btnR.setFont(new Font(null, Font.PLAIN, 20));
+        btnR.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                layout.next(panel);
+            }
+        });
+        vBox2.add(result);
+        vBox2.add(btnR);
+
+        final JTextArea textArea = new JTextArea(5, 30);
+        textArea.setLineWrap(true);
+
+        JButton btn = new JButton("submit");
+        btn.setFont(new Font(null, Font.PLAIN, 20));
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                result.setText(start(textArea.getText()));
+                layout.next(panel);
+            }
+        });
+        vBox1.add(textArea);
+        vBox1.add(btn);
+
+        panel.add(vBox1);
+        panel.add(vBox2);
+
+        layout.show(panel, "SHA256");
+
+        jf.setContentPane(panel);
+        jf.setVisible(true);
+
+    }
+
+    static String start(String temp) {
         List<long[]> input = new ArrayList<>();
-        init(input);
-        long[] temp = input.get(0);
+        init(input, temp);
         for (long[] t : input) {
             process(t);
         }
-        System.out.println(Integer.toHexString((int) h0) + Integer.toHexString((int) h1) + Integer.toHexString((int) h2)
+        String result = Integer.toHexString((int) h0) + Integer.toHexString((int) h1) + Integer.toHexString((int) h2)
                 + Integer.toHexString((int) h3) + Integer.toHexString((int) h4) + Integer.toHexString((int) h5)
-                + Integer.toHexString((int) h6) + Integer.toHexString((int) h7));
+                + Integer.toHexString((int) h6) + Integer.toHexString((int) h7);
+        return result;
     }
 
     // Process raw data and divide it into 512bits' arrays
-    static void init(List<long[]> input) {
-        System.out.println("请输入要加密的数据：");
-        Scanner scan = new Scanner(System.in);
-        String tempS = scan.nextLine();
+    static void init(List<long[]> input, String tempS) {
+        h0 = 0x6a09e667;
+        h1 = 0xbb67ae85;
+        h2 = 0x3c6ef372;
+        h3 = 0xa54ff53a;
+        h4 = 0x510e527f;
+        h5 = 0x9b05688c;
+        h6 = 0x1f83d9ab;
+        h7 = 0x5be0cd19;
         byte[] tempB = null;
         try {
             tempB = tempS.getBytes("utf-8");

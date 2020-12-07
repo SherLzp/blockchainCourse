@@ -12,7 +12,7 @@
 javac -encoding utf-8 .\SHA256.java
 ```
 
-进行编译，若无报错且目录下生成SHA256.class则成功
+进行编译，若无报错且目录下生成SHA256.class、SHA256$1.class、SHA256$2.class则成功
 
 再次在目录下输入
 
@@ -21,3 +21,9 @@ java SHA256
 ```
 
 即可运行
+
+![1](../asset/1.png)
+
+输入要加密的数据后点击submit，即可显示结果
+
+![1](../asset/2.png)
