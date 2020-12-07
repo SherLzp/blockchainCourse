@@ -12,7 +12,7 @@ VS2019 C/C++
 
 ## 测试文件
 
-- basic.txt 验证SHA256加密正确性 输出到
+- basic.txt 验证SHA256加密正确性 输出到控制台
 - time_test.txt 作为检验SHA256算法加密时间复杂度的输入字符串
 - x1-bit chg.txt 输出单字符变化后的加密串 
 - rand.txt 输入到碰撞测试的初值
