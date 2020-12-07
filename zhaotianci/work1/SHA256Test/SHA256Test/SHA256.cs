@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CodeGenerator
+namespace SHA256Test
 {
     public class SHA256
     {
