@@ -10,69 +10,69 @@
 
 ​		代码结果：
 
-​		![image-20201207210558200](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207210558200.png)
+​		![image-20201207210558200](./asserts/image-20201207210558200.png)
 
 ​		网上在线测试结果：
 
-​		![image-20201207210730464](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207210730464.png)
+​		![image-20201207210730464](./asserts/image-20201207210730464.png)
 
 #### 	2.2 输入一个回车
 
 ​		代码结果：
 
-​		![image-20201207210913586](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207210913586.png)
+​		![image-20201207210913586](./asserts/image-20201207210913586.png)
 
 ​		网上在线测试结果：
 
-​		![image-20201207210954060](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207210954060.png)
+​		![image-20201207210954060](./asserts/image-20201207210954060.png)
 
 #### 	2.3 输入一个空格
 
 ​		代码结果：
 
-​		![image-20201207211304492](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207211304492.png)
+​		![image-20201207211304492](./asserts/image-20201207211304492.png)
 
 ​		网上在线测试结果：
 
-​		![image-20201207211340866](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207211340866.png)
+​		![image-20201207211340866](./asserts/image-20201207211340866.png)
 
 #### 	2.4 输入长度小于448bits的信息
 
 ​		代码结果：
 
-​		![image-20201207211546699](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207211546699.png)
+​		![image-20201207211546699](./asserts/image-20201207211546699.png)
 
 ​		网上在线测试结果：
 
-​		![image-20201207211614443](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207211614443.png)
+​		![image-20201207211614443](./asserts/image-20201207211614443.png)
 
 #### 	2.5 输入长度介于448bits至512bits之间的信息
 
 ​		代码结果：
 
-​	![image-20201207211855186](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207211855186.png)
+​	![image-20201207211855186](./asserts/image-20201207211855186.png)
 
 ​		网上在线测试结果：
 
-​		![image-20201207211940660](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207211940660.png)
+​		![image-20201207211940660](./asserts/image-20201207211940660.png)
 
 #### 	2.6 输入长度超过512bits的信息
 
 ​		代码结果：
 
-![image-20201207212057612](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207212057612.png)
+![image-20201207212057612](./asserts/image-20201207212057612.png)
 
 ​		网上在线测试结果：
 
-​		![image-20201207212144597](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207212144597.png)
+​		![image-20201207212144597](./asserts/image-20201207212144597.png)
 
 #### 	2.7 输入中文（需在中文编码环境是utf-8的情况下进行测试）
 
 ​		代码结果：
 
-​		![image-20201207214534574](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207214534574.png)
+​		![image-20201207214534574](./asserts/image-20201207214534574.png)
 
 ​		网上在线测试结果：
 
-​		![image-20201207214842326](C:\Users\agenzy\Desktop\blockchainCourse\赵洋\work1\image-20201207214842326.png)
+​		![image-20201207214842326](./asserts/image-20201207214842326.png)
 
