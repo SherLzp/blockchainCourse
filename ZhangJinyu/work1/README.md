@@ -15,7 +15,7 @@
 
 - 对于sha256的实现进行验证：
 
-  ![1](C:\Users\13616\Desktop\下个学期\区块链与数字货币\blockchainCourse\ZhangJinyu\work1\picture\result.jpg)
+  ![1](picture\result.jpg)
 
 - **其他文字说明见邮箱内提交的文档**
 
