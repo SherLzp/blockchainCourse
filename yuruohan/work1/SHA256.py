@@ -61,7 +61,7 @@ def padding(msg: bytearray):
 def sha256(msg):
     # Deal with string
     if isinstance(msg, str):
-        msg = bytearray(msg, 'ascii')
+        msg = bytearray(msg, 'utf-8')
     
     # Pre-process
     msg = padding(msg)
@@ -137,7 +137,13 @@ def sha256(msg):
             (h6).to_bytes(4, 'big') + (h7).to_bytes(4, 'big'))
 
 if __name__ == '__main__':
-    msg = "I'm Sheena Ringo 1"
+    infile = open('./input.txt', 'r', encoding="utf-8")
+    msg = infile.read()
+    infile.close()
+    
     res = sha256(msg)
-    print (len(msg))
-    print ("SHA256 code of \"" + msg + "\"is:\n" + res.hex())
+    print ("SHA256 (" + msg + ") = \n" + res.hex())
+
+    outfile = open('./output.txt', 'w')
+    outfile.write(res.hex())
+    outfile.close()
