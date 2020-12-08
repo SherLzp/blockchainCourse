@@ -28,13 +28,13 @@ In this program, it can generate a 64-character-long SHA256 encrypted string acc
 
   The input is "abc"
 
-  ![](D:\Documents\Git Project\blockchainCourse\Leming Shen\work1\assets\1.bmp)
+  ![](https://github.com/ZJUslm/blockchainCourse/blob/3180103654/Leming%20Shen/work1/assets/1.bmp)
 
 - For a string whose length is larger than 64 (512 bits):
 
   The input is "algnaposdghaiswaeo7593q0684726qao;lihg1684968$^&*(&&^bmnjhmkasdgmjl;p"
 
-  ![](D:\Documents\Git Project\blockchainCourse\Leming Shen\work1\assets\2.bmp)
+  ![](https://github.com/ZJUslm/blockchainCourse/blob/3180103654/Leming%20Shen/work1/assets/2.bmp)
 
 ### Correctness
 
