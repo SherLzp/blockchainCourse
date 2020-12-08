@@ -13,11 +13,11 @@
 * 语言：python 3.7.5
 * IDE：VScode
 * sha256.py文件直接运行即可即可。
-* PoW.py, PoW_sum.py, Compare.py三个文件调用了sha256.py中的sha256函数，需要放在同一路径下运行该目录下。其中Compare.py同一路径下需包含对比的1.txt和2.txt
+* PoW.py, PoW_sum.py, Compare.py三个文件调用了sha256.py中的sha256函数，需要放在同一路径下运行该目录下。其中Compare.py同一路径下需包含对比的1.txt和2.txt。
 
 ## 文件说明和运行样例
 
-> 详细的多角度测试放在报告中了，这里仅展示样例输入测试
+> 详细的多角度测试放在报告中了，这里仅展示样例输入测试。
 
 ### sha256.py
 
