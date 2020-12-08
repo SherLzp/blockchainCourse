@@ -10,7 +10,7 @@ sha256.cpp是SHA256算法，输入一段内容会输出这段内容的hash值，
 
 ### 实验一
 
-chain.cpp是实验说明SHA256如何用于区块数据锁定，不打开140行的注释前是修改前的模拟区块链内容，打开注释后是对某一块内容进行微小修改后区块链的内容，通过对比可以发现SHA256对微小改动做出的反应
+chain.cpp是实验说明SHA256如何用于区块数据锁定，不打开140行的注释前是修改前的模拟区块链内容，打开注释后是对某一块内容进行微小修改后区块链的内容，通过对比可以发现SHA256对微小改动做出的反应。实验模拟了短短5个区块形成的区块链修改前后的内容，第0个区块没有前节点所以没有hash值进行存放。
 
 <img src="C:\Users\Dell\Desktop\blockchainCourse\zhaoqingyun\work1\README.assets\image-20201208003116194.png" alt="image-20201208003116194" style="zoom:67%;" />
 
@@ -36,7 +36,7 @@ pow.cpp是实验模拟PoW工作过程，通过修改122行的条件可以控制�
 
 <img src="C:\Users\Dell\Desktop\blockchainCourse\zhaoqingyun\work1\README.assets\image-20201208004533482.png" alt="image-20201208004533482" style="zoom:67%;" />
 
-以上三个文件的.exe文件可以直接运行
+以上三个文件的.exe文件可以直接运行，实验的详细内容已上交邮箱
 
 
 
