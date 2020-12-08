@@ -40,7 +40,7 @@ In this program, it can generate a 64-character-long SHA256 encrypted string acc
 
 - To check the correctness of my program, you can compare the output with a website:
 
-  <embed src="http://www.jsons.cn/sha/" width="100%" height="500"></embed>
+  <iframe src="http://www.jsons.cn/sha/" width="100%" height="500"></iframe>
 
 - I generate 1000 random strings whose length range from 1 to 20000, and the result is in "output.txt"
 
