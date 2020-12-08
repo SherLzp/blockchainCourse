@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 ﻿  源.cpp
 C:\Users\Eternal\Downloads\2021\Block Chain区块链\SHA256\源.cpp(54,32): warning C4244: “初始化”: 从“std::streamoff”转换到“int”，可能丢失数据
 C:\Users\Eternal\Downloads\2021\Block Chain区块链\SHA256\源.cpp(112,20): warning C4244: “初始化”: 从“std::streamoff”转换到“int”，可能丢失数据
 C:\Users\Eternal\Downloads\2021\Block Chain区块链\SHA256\源.cpp(152,24): warning C4244: “初始化”: 从“std::streamoff”转换到“int”，可能丢失数据
   SHA256.vcxproj -> C:\Users\Eternal\Downloads\2021\Block Chain区块链\SHA256\Debug\SHA256.exe
+=======
+﻿  源.cpp
+C:\Users\Eternal\Downloads\2021\Block Chain区块链\SHA256\源.cpp(54,32): warning C4244: “初始化”: 从“std::streamoff”转换到“int”，可能丢失数据
+C:\Users\Eternal\Downloads\2021\Block Chain区块链\SHA256\源.cpp(112,20): warning C4244: “初始化”: 从“std::streamoff”转换到“int”，可能丢失数据
+C:\Users\Eternal\Downloads\2021\Block Chain区块链\SHA256\源.cpp(152,24): warning C4244: “初始化”: 从“std::streamoff”转换到“int”，可能丢失数据
+  SHA256.vcxproj -> C:\Users\Eternal\Downloads\2021\Block Chain区块链\SHA256\Debug\SHA256.exe
+>>>>>>> e47bb60963ef07b90fe7a1acd039a33fe23a50b7
