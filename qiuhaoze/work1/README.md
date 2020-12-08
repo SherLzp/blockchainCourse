@@ -3,3 +3,4 @@
 
 
 运行结果示例：
+![结果示例](https://github.com/GreatWangZai/blockchainCourse/blob/3180103771/qiuhaoze/work1/img/运行结果示例.png)
