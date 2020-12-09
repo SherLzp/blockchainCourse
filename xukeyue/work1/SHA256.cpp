@@ -28,7 +28,7 @@ void SHA256(uint32_t* hash, const string& plaintext)
 		0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
 	};
 
-	// Ô¤´¦Àí {
+	// é¢„å¤„ç† {
 	size_t len = plaintext.length();
 	unsigned char* str = new unsigned char[plaintext.length() + 128];
 	memcpy_s(str, sizeof(unsigned char) * plaintext.length(),
@@ -36,30 +36,30 @@ void SHA256(uint32_t* hash, const string& plaintext)
 
 	memcpy_s(hash, sizeof(uint32_t) * 8, oriHash, sizeof(uint32_t) * 8);
 
-	// ²¹1Î»1
+	// è¡¥1ä½1
 	str[len++] = (unsigned char)0x80;
 
-	// ¸ù¾İ(1+PlaintextBitLen+SuffixBitLen) % 512 == 448
-	// ¼ÆËã×îĞ¡·Ç¸ºSuffixBitLen
+	// æ ¹æ®(1+PlaintextBitLen+SuffixBitLen) % 512 == 448
+	// è®¡ç®—æœ€å°éè´ŸSuffixBitLen
 	int suffixBitLen = (plaintext.length() * 8 + 1) % 512 - 448;
 	if (suffixBitLen < 0)
 		suffixBitLen *= -1;
 	else
 		suffixBitLen = 512 - suffixBitLen;
-	// ²¹suffixBitLen¸ö0
+	// è¡¥suffixBitLenä¸ª0
 	suffixBitLen /= 8;
 	while (suffixBitLen--)
 		str[len++] = 0x0;
 
-	// ²¹64Î»µÄ³¤¶È
+	// è¡¥64ä½çš„é•¿åº¦
 	uint64_t len64 = (uint64_t)plaintext.length() << 3;
 	unsigned char* cp = (unsigned char*)&len64;
 	for (size_t i = 0; i < 8; i++, cp++)
-		str[len + 7 - i] = *cp; // Ğ¡¶Ë»úÆ÷×¨ÓÃ£¬´ó¶Ë»úÆ÷ĞèÒª¸ü¸Ä
+		str[len + 7 - i] = *cp; // å°ç«¯æœºå™¨ä¸“ç”¨ï¼Œå¤§ç«¯æœºå™¨éœ€è¦æ›´æ”¹
 	len += 8;
-	// } Ô¤´¦Àí½áÊø
+	// } é¢„å¤„ç†ç»“æŸ
 
-	// ¼ÆËã {
+	// è®¡ç®— {
 	size_t chunkLen = len / 64;
 	uint32_t w[64];
 	for (size_t i = 0; i < chunkLen; i++)
@@ -98,7 +98,7 @@ void SHA256(uint32_t* hash, const string& plaintext)
 		hash[0] += a; hash[1] += b; hash[2] += c; hash[3] += d;
 		hash[4] += e; hash[5] += f; hash[6] += g; hash[7] += h;
 	}
-	// } ¼ÆËã½áÊø
+	// } è®¡ç®—ç»“æŸ
 
 	delete[] str;
 }
@@ -117,7 +117,7 @@ int main()
 	{
 		getline(in, plaintext);
 		if (plaintext.empty())break;
-		cout << "Ã÷ÎÄ£º" << plaintext << endl;
+		cout << "æ˜æ–‡ï¼š" << plaintext << endl;
 
 		start = clock();
 		SHA256(cyphertext, plaintext);
@@ -125,10 +125,12 @@ int main()
 
 		for (size_t i = 0; i < 8; i++)
 			cout << hex << setw(8) << setfill('0') << cyphertext[i] << ' ';
-		cout << "ÓÃÊ±£º" << dec << (end - start) << "ms" << endl;
-
-		if ((cyphertext[0] & 0xfc000000) == 0) // Ä£ÄâÍÚ¿ó
-			break;
+		cout << "ç”¨æ—¶ï¼š" << dec << (end - start) << "ms" << endl;
+		
+		// æ¨¡æ‹ŸæŒ–çŸ¿ {
+		//if ((cyphertext[0] & 0xfc000000) == 0)
+			//break;
+		// }
 	}
 	in.close();
 	
