@@ -1,0 +1,92 @@
+# SHA256代码说明
+
+**3180103812    潘凯航**
+
+**编程语言： C++**
+
+------
+
+
+
+### 代码文件
+
+- sha256.h
+
+- sha256.cpp
+
+- main.cpp
+
+- sha256.exe (可执行文件)
+
+  
+
+### 使用说明
+
+程序运行时需要对输入字符串的来源进行选择：输入1从命令行读入字符串，输入2从文件读入字符串，输入其他退出程序。
+
+输入1后接下来只需根据提示在命令行输入相关字符串，那么程序将输出该字符串对应的哈希值；输入2则根据提示输入文件名（及其路径），那么程序将输出文件内容对应的sha256哈希值。
+
+需要特别注意的是，对于中文而言，相同的内容不同的编码会得到不同的SHA256哈希值。
+
+​      
+
+### 运行方法
+
+以Windows10系统为例，下载相关代码，通过 *cd ...*  进入相应的C++代码目录，并在该目录下执行以下命令：
+
+```
+g++ -c sha256.cpp
+
+g++ -c main.cpp
+
+g++ main.o sha256.o -o sha256
+
+sha256.exe
+```
+
+即可运行SHA256的C++代码，为了保险起见，已经给出了相关的exe文件。
+
+
+
+### 正确性测试
+
+首先在F:\1.txt中写入以下内容（编码为UTF-8）：
+
+<img src="D:\Projects\blockchainCourse\PanKaihang\work1\程序正确性测试图片\1.png"  align="left"/>
+
+然后运行程序：
+
+<img src="D:\Projects\blockchainCourse\PanKaihang\work1\程序正确性测试图片\2.png"  align="left"/>
+
+
+
+上图中我们分别对命令行输入的字符串以及文件*1.txt*中的内容通过sha256算法计算哈希值，可以看到，
+
+***blockchain and digital currency***的sha256哈希值为：
+
+<u>70c50e5958b41a7bcf39d71c291e9820e748616c8421f9c2c2ac8aebd439af85</u>
+
+***区块链与数字货币***的sha256哈希值为：(中文编码为UTF-8)
+
+<u>e0aa878f8bae2da921fd7ca7b47e3f4e0e106a619a25b35d9834899765fefb91</u>
+
+
+
+为了验证是否正确实现了SHA256算法，在网上找了一个SHA256在线加密软件：
+
+<img src="D:\Projects\blockchainCourse\PanKaihang\work1\程序正确性测试图片\3.png"  align="left"/>
+
+<img src="D:\Projects\blockchainCourse\PanKaihang\work1\程序正确性测试图片\4.png"  align="left"/>
+
+可以看到，当输入相同时，我们程序的输出与SHA256在线加密软件的输出完全相同，由此可得，程序正确实现了SHA256算法。
+
+
+
+
+
+
+
+
+
+
+
