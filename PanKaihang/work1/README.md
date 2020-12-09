@@ -52,11 +52,11 @@ sha256.exe
 
 首先在F:\1.txt中写入以下内容（编码为UTF-8）：
 
-<img src="D:\Projects\blockchainCourse\PanKaihang\work1\程序正确性测试图片\1.png"  align="left"/>
+<img src=".\程序正确性测试图片\1.png"  align="left"/>
 
 然后运行程序：
 
-<img src="D:\Projects\blockchainCourse\PanKaihang\work1\程序正确性测试图片\2.png"  align="left"/>
+<img src=".\程序正确性测试图片\2.png"  align="left"/>
 
 
 
@@ -74,9 +74,9 @@ sha256.exe
 
 为了验证是否正确实现了SHA256算法，在网上找了一个SHA256在线加密软件：
 
-<img src="D:\Projects\blockchainCourse\PanKaihang\work1\程序正确性测试图片\3.png"  align="left"/>
+<img src=".\程序正确性测试图片\3.png"  align="left"/>
 
-<img src="D:\Projects\blockchainCourse\PanKaihang\work1\程序正确性测试图片\4.png"  align="left"/>
+<img src=".\程序正确性测试图片\4.png"  align="left"/>
 
 可以看到，当输入相同时，我们程序的输出与SHA256在线加密软件的输出完全相同，由此可得，程序正确实现了SHA256算法。
 
