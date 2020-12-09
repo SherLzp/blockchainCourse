@@ -54,9 +54,17 @@ sha256.exe
 
 <img src=".\程序正确性测试图片\1.png"  align="left"/>
 
+
+
+
+
+
+
 然后运行程序：
 
 <img src=".\程序正确性测试图片\2.png"  align="left"/>
+
+
 
 
 
