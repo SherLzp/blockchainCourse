@@ -1,0 +1,4 @@
+﻿  SHA256.cpp
+c:\users\87784\desktop\大三上\区块链与数字货币\作业\作业1\sha256\sha256\sha256.cpp(74): warning C4244: “=”: 从“uint64”转换到“uint8”，可能丢失数据
+c:\users\87784\desktop\大三上\区块链与数字货币\作业\作业1\sha256\sha256\sha256.cpp(149): warning C4267: “参数”: 从“size_t”转换到“uint32”，可能丢失数据
+  SHA256.vcxproj -> C:\Users\87784\Desktop\大三上\区块链与数字货币\作业\作业1\SHA256\x64\Debug\SHA256.exe
