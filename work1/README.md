@@ -4,11 +4,11 @@
 
 ### 文件目录
 
-|——SHA256.h
-|——SHA256.cpp
-|——main.cpp
-|——PoW_demo.cpp
-|——CmakeLists.txt
+|——SHA256.h  
+|——SHA256.cpp  
+|——main.cpp  
+|——PoW_demo.cpp  
+|——CmakeLists.txt  
 
 ### 构建和运行方法
 
