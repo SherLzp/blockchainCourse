@@ -10,25 +10,25 @@ aaa.py 是个简单产生长字符串的代码，aaa.txt是输出
 
 ##### 在线测试结果
 
-![network_1](assests\network_1.png)
+![network_1](assests/network_1.png)
 
 ##### 自己结果
 
-![me_1](assests\me_1.png)
+![me_1](assests/me_1.png)
 
 ##### 在线测试结果
 
-![network_2](assests\network_2.png)
+![network_2](assests/network_2.png)
 
 ##### 自己结果
 
-![me_2](assests\me_2.png)
+![me_2](assests/me_2.png)
 
 ##### 长字符串测试
 
-![](assests\long_string)
+![](assests/long_string.png)
 
-![image-20201209155157234](assests\network_long.png)
+![image-20201209155157234](assests/network_long.png)
 
 由于SHA256很难碰撞，所以在三次试验后可以确定代码正确无误。
 
