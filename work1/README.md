@@ -8,7 +8,7 @@
 |——SHA256.cpp  
 |——main.cpp  
 |——PoW_demo.cpp  
-|——CmakeLists.txt  
+|——CMakeLists.txt  
 
 ### 构建和运行方法
 
