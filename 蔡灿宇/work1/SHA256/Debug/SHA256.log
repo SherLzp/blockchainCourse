@@ -1,0 +1,10 @@
+﻿  SHA256.cpp
+c:\users\87784\desktop\大三上\区块链与数字货币\作业\作业1\sha256\sha256\sha256.h(7): warning C4005: “_CRT_SECURE_NO_WARNINGS”: 宏重定义
+  c:\users\87784\desktop\大三上\区块链与数字货币\作业\作业1\sha256\sha256\sha256.cpp: note: 参见“_CRT_SECURE_NO_WARNINGS”的前一个定义
+c:\users\87784\desktop\大三上\区块链与数字货币\作业\作业1\sha256\sha256\sha256.cpp(72): warning C4244: “=”: 从“uint64”转换到“uint8”，可能丢失数据
+c:\users\87784\desktop\大三上\区块链与数字货币\作业\作业1\sha256\sha256\sha256.cpp(137): warning C4018: “<”: 有符号/无符号不匹配
+  main.cpp
+c:\users\87784\desktop\大三上\区块链与数字货币\作业\作业1\sha256\sha256\sha256.h(7): warning C4005: “_CRT_SECURE_NO_WARNINGS”: 宏重定义
+  c:\users\87784\desktop\大三上\区块链与数字货币\作业\作业1\sha256\sha256\main.cpp: note: 参见“_CRT_SECURE_NO_WARNINGS”的前一个定义
+  正在生成代码...
+  SHA256.vcxproj -> C:\Users\87784\Desktop\大三上\区块链与数字货币\作业\作业1\SHA256\Debug\SHA256.exe
