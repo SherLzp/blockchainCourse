@@ -1,0 +1,4 @@
+﻿  源.cpp
+E:\20.autumn_and_winter\区块链\project-1\homework-1\源.cpp(159,30): warning C4244: “初始化”: 从“double”转换到“unsigned int”，可能丢失数据
+E:\20.autumn_and_winter\区块链\project-1\homework-1\源.cpp(367,23): warning C4018: “<”: 有符号/无符号不匹配
+  homework-1.vcxproj -> E:\20.autumn_and_winter\区块链\project-1\homework-1\Debug\homework-1.exe
