@@ -1,0 +1,13 @@
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\bin\Debug\netcoreapp3.1\POWTest.exe
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\bin\Debug\netcoreapp3.1\POWTest.deps.json
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\bin\Debug\netcoreapp3.1\POWTest.runtimeconfig.json
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\bin\Debug\netcoreapp3.1\POWTest.runtimeconfig.dev.json
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\bin\Debug\netcoreapp3.1\POWTest.dll
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\bin\Debug\netcoreapp3.1\POWTest.pdb
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\obj\Debug\netcoreapp3.1\POWTest.csprojAssemblyReference.cache
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\obj\Debug\netcoreapp3.1\POWTest.AssemblyInfoInputs.cache
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\obj\Debug\netcoreapp3.1\POWTest.AssemblyInfo.cs
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\obj\Debug\netcoreapp3.1\POWTest.csproj.CoreCompileInputs.cache
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\obj\Debug\netcoreapp3.1\POWTest.dll
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\obj\Debug\netcoreapp3.1\POWTest.pdb
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\POWTest\obj\Debug\netcoreapp3.1\POWTest.genruntimeconfig.cache

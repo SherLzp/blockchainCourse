@@ -1,0 +1,13 @@
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\bin\Debug\netcoreapp3.1\SHA256Test.exe
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\bin\Debug\netcoreapp3.1\SHA256Test.deps.json
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\bin\Debug\netcoreapp3.1\SHA256Test.runtimeconfig.json
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\bin\Debug\netcoreapp3.1\SHA256Test.runtimeconfig.dev.json
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\bin\Debug\netcoreapp3.1\SHA256Test.dll
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\bin\Debug\netcoreapp3.1\SHA256Test.pdb
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\obj\Debug\netcoreapp3.1\SHA256Test.csprojAssemblyReference.cache
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\obj\Debug\netcoreapp3.1\SHA256Test.AssemblyInfoInputs.cache
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\obj\Debug\netcoreapp3.1\SHA256Test.AssemblyInfo.cs
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\obj\Debug\netcoreapp3.1\SHA256Test.csproj.CoreCompileInputs.cache
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\obj\Debug\netcoreapp3.1\SHA256Test.dll
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\obj\Debug\netcoreapp3.1\SHA256Test.pdb
+E:\Git\blockchainCourse\zhaotianci\work1\SHA256Test\SHA256Test\obj\Debug\netcoreapp3.1\SHA256Test.genruntimeconfig.cache
