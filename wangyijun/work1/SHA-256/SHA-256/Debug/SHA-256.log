@@ -1,0 +1,4 @@
+﻿  main.cpp
+e:\2020-fall\block chain\sha-256\sha-256\main.cpp(42): warning C4244: “初始化”: 从“UInt_64”转换到“UInt_32”，可能丢失数据
+e:\2020-fall\block chain\sha-256\sha-256\main.cpp(50): warning C4244: “初始化”: 从“UInt_64”转换到“UInt_32”，可能丢失数据
+e:\2020-fall\block chain\sha-256\sha-256\main.cpp(50): error C2065: “d”: 未声明的标识符
