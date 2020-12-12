@@ -1,0 +1,4 @@
+E:\20.autumn_and_winter\区块链\homework-1\Debug\homework-1.exe
+E:\20.autumn_and_winter\区块链\homework-1\Debug\homework-1.pdb
+E:\20.autumn_and_winter\区块链\project-1\homework-1\Debug\homework-1.exe
+E:\20.autumn_and_winter\区块链\project-1\homework-1\Debug\homework-1.pdb
