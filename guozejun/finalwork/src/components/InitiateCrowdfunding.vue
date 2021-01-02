@@ -80,8 +80,7 @@
           value => !!value || '不能为空！',
           value => {
             const integer = /^\+?[1-9][0-9]*$/
-            const float = /^[+-]?((0|([1-9]\d*))\.\d+)?$/
-            return (integer.test(value) || float.test(value)) || "必须是一个数字"
+            return integer.test(value) || "必须是一个整数"
           },
         ],
         dates: [getNowFormatDate(), getNowFormatDate()],

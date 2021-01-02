@@ -44,7 +44,7 @@ export default {
         route: '/my'
       }
     ],
-    title: "标题",
+    title: "基于ETH的众筹DApp",
   }),
 };
 </script>
