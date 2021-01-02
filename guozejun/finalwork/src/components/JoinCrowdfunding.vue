@@ -1,18 +1,34 @@
 <template>
   <div class='metamask-info'>
-    <p>Metamask: {{ web3.isInjected }}</p>
-    <p>Network: {{ web3.networkId }}</p>
-    <p>Account: {{ web3.coinbase }}</p>
-    <p>Balance: {{ web3.balance }}</p>
+    <v-text-field v-model="getAccountInfo"></v-text-field>
   </div>
 </template>
 
 <script>
+import getWeb3 from '../util/getWeb3'
+
+var web3 =  getWeb3()
+console.log(web3)
+var coinbase;
+web3.eth.getCoinbase().then((value) => {
+  coinbase = value
+  console.log(value)
+})
+
 export default {
   name: 'hello-metamask',
-  computed: {
-    web3 () {
-      return this.$store.state.web3
+  // data: () => {
+  //   //Account: ""
+  // },
+  computed:{
+    getAccountInfo() {
+      var temp = coinbase
+      // .then(
+      //   function(value) {
+      //     console.log(value)
+      //   }
+      // )
+      return temp
     }
   }
 }
