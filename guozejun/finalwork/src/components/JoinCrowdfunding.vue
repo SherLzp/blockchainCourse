@@ -5,33 +5,26 @@
 </template>
 
 <script>
-import getWeb3 from '../util/getWeb3'
 
+import getWeb3 from '../util/getWeb3'
+import getContract from '../util/getContract'
 var web3 =  getWeb3()
+var instance = getContract()
+instance.then(console.log)
 console.log(web3)
-var coinbase;
+var coinbase
 web3.eth.getCoinbase().then((value) => {
   coinbase = value
   console.log(value)
 })
 
 export default {
-  name: 'hello-metamask',
-  // data: () => {
-  //   //Account: ""
-  // },
+  name: 'JoinCrowdfunding',
   computed:{
     getAccountInfo() {
       var temp = coinbase
-      // .then(
-      //   function(value) {
-      //     console.log(value)
-      //   }
-      // )
       return temp
     }
   }
 }
 </script>
-
-<style scoped></style>

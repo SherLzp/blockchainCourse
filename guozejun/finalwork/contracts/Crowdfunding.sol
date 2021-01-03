@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-contract Crowfunding {
+contract Crowdfunding {
 
     address public owner;
 
@@ -39,7 +39,7 @@ contract Crowfunding {
 
     Project[] public projects;
 
-    constructor() {
+    constructor() public {
         owner = msg.sender;
     }
 }
