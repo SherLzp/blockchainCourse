@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/semantic.css" />
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+      <style type="text/css">
+          .cardBox {
+              width: 350px;
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              text-align: center;
+              float: left;
+              margin-right: 10px;
+              padding: 5px;
+              padding-top: 15px;
+          }
+
+          .headerBox {
+              color: #fff;
+              padding: 10px;
+              font-size: 30px;
+              height: 50px;
+          }
+
+          .bodyBox {
+              padding: 10px;
+          }
+
+          .bodyBox p {
+              margin-left: 5px;
+          }
+      </style>
+  </head>
+  <body>
+    <!--
+    <div class="ui container" style="width: 90%; margin-top: 40px; ">
+      <div class="ui four column grid" style="margin-left: 20px;">
+        <% for (let i = 0; i < fundings.length; i++) { %>
+        <% let funding = fundings[i]; if (funding.errMsg == null) { %>
+        <div class="column">
+          <div class="ui card">
+            <div class="content">
+              <a class="header"><%= funding.name %></a>
+              <div class="meta">
+                <div>发起者:<%= funding.creator %></div>
+              </div>
+              <div class="description">
+                <p
+                  style="float: right;margin-top: -35px; font-size: 20px; margin-left: -10px; font-weight: bold; color: #FF4500">
+                  目标：￥ <%= funding.target %>, 现有:￥<%= funding.present %></p>
+              </div>
+              <div class="ui left floated small primary button" style="margin-left:1%;" onclick="attendFunding('<%= funding.address %>')">参加众筹
+            </div>
+          </div>
+        </div>
+        <% } %>
+        <% } %>
+      </div>
+    </div>
+    -->
+    <div>
+      <% for (let i = 0; i < fundings.length; i++) { %>
+      <% let funding = fundings[i]; if (funding.errMsg == null) { %>
+        <div class="cardBox">
+          <div class="headerBox" style="background-color: #4caf50;">
+              <p>
+                  <a title="查看详情" style="cursor: pointer; color:white" onclick="showModal('<%= funding.address %>')"><%= funding.name %></a>
+              </p>
+          </div>
+          <div class="bodyBox">
+            <p>发起者:</p>
+            <p><%= funding.creator %></p>
+            <p>众筹状态：
+                <% if (funding.status == 1){ %>
+                  <a href="javascript:void(0)" class="label label-success" style="border-radius: .25em;">已达标</a>
+                <% } else if(funding.status == 0) { %>
+                  <a href="javascript:void(0)" class="label label-warning" style="border-radius: .25em;">未达标</a>
+                <% } else { %>
+                  <a href="javascript:void(0)" class="label label-danger" style="border-radius: .25em;">已失败</a>
+                <% } %>
+            </p>
+            <p>目标:￥ <%= funding.target %></p>
+            <p>现有:￥ <%= funding.present %></p>
+            <p>结束时间: <%= funding.endTime %></p>
+            <div>
+              <input type="text" name="support<%= funding.address %>" placeholder="输入您想参加众筹的钱">
+              <p class="ui right floated small primary button" style="margin-left:1%;" onclick="attendFunding('<%= funding.address %>')">参加众筹</p>
+            </div>
+          </div>
+        </div>
+      <div class="ui modal" id = "modal<%= funding.address %>" style="width: 40%;">
+        <div class="header">
+          众筹参与者
+        </div>
+        <div class="content">
+          <% for (let i = 0; i < funding.investors.length; i++) { %>
+            <% let investor = funding.investors[i] %>
+            <form class="ui form">
+              <div >
+                <label><%= investor %></label>
+                <label><%= funding.support[i] %></label>
+              </div>
+            </form>
+          <% } %>
+        </div>
+        <div class="actions">
+          <div class="ui cancel button">退出</div>
+        </div>
+      </div>
+      <% } %>
+      <% } %>
+    </div>
+    <div class="ui left floated small primary button" style="margin-left:1%;" onclick="showModal('_add')">添加众筹
+    <!-- 模态框 --> 
+    <div class="ui modal add" id="modal_add" style="width: 40%;">
+      <div class="header">
+        添加众筹
+      </div>
+      <div class="content">
+        <form class="ui form">
+          <div class="field">
+            <label>众筹名称</label>
+            <input type="text" name="fundingNameAdd" placeholder="名称">
+          </div>
+          <div class="field">
+            <label>目标金额</label>
+            <input type="text" name="targetMoney" placeholder="目标金额">
+          </div>
+          <div class="field">
+            <label>持续时间</label>
+            <input type="text" name="duration" placeholder="单位(秒)">
+          </div>
+        </form>
+      </div>
+      <div class="actions">
+        <div class="ui positive button" onclick="createFunding()">提交</div>
+        <div class="ui cancel button">取消</div>
+      </div>
+    </div>
+
+    <script src="/javascripts/jquery.js"></script>
+	  <script src="/javascripts/semantic.min.js"></script>
+  	<script>
+    		function showModal(id) {
+          console.log(1);
+			    $('#'+'modal'+id).modal('show');
+		    }
+        function createFunding(){
+          $.ajax({
+            dataType: "json",
+            type: "post",
+            url: "/createFunding",
+            data: {
+              name: $("input[name='fundingNameAdd']").val(),
+              target: $("input[name='targetMoney']").val(),
+              duration: $("input[name='duration']").val(),
+            },
+            success: (data) => {
+              if (data.status == 1) {
+                alert("新建成功！");
+                window.location.reload();
+              } else alert(data.msg);
+            },
+            error: (err) => {
+              alert("与服务器连接异常，请稍后再试!");
+            },
+          });
+        }
+        function attendFunding(addr){
+          console.log(addr);
+          $.ajax({
+            dataType: "json",
+            type: "post",
+            url: "/attendFunding",
+            data: {
+              address: addr,
+              money: $("input[name='support"+addr +"']").val()
+            },
+            success: (data) => {
+              if (data.status == 1) {
+                alert("加入成功！");
+                window.location.reload();
+              } else{
+                alert("加入失败！");
+                console.log(data.msg);
+              }
+            },
+            error: (err) => {
+              alert("与服务器连接异常，请稍后再试!");
+            },
+          });
+        }
+    </script>
+  </body>
+</html>
