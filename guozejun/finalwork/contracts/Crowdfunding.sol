@@ -10,23 +10,8 @@ contract Crowdfunding {
     uint riseAmount;
     uint currentAmount;
     bool isFinished = false;
-    Participant[] participants;
-
-    struct Participant {
-        address userAddress;
-        uint amount;
-    }
-
-    // struct Voter {
-    //     uint weight;
-    //     bool voted;
-    //     uint proposal;
-    // }
-
-    // struct Proposal {
-    //     string name;
-    //     uint voteCount;
-    // }
+    address[] participants;
+    uint[] amounts;
 
     constructor(string memory _projAbstract, string memory _projectDescription, uint _startTime,
                 uint _endTime, uint _riseAmount) public {
@@ -39,17 +24,21 @@ contract Crowdfunding {
     }
 
     function Parcipate(uint amount, address addr) public payable {
-        Participant memory part;
-        part.amount = amount;
+        participants.push(addr);
+        amounts.push(amount);
         currentAmount += amount;
         if(currentAmount >= riseAmount) {
             isFinished = true;
         }
-        part.userAddress = addr;
-        participants.push(part);
     }
 
     function ProjectStatus() public view returns(bool) {
         return isFinished;
+    }
+
+    function GetProjectInfo() 
+    public view returns(address, string memory, string memory, uint, uint, uint, uint, bool, address[] memory, uint[] memory) {
+        return (owner,projectAbstract,projectDescription,startTime,
+        endTime,riseAmount,currentAmount,isFinished,participants,amounts);
     }
 }

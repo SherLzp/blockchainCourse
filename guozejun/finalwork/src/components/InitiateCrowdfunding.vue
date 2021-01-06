@@ -52,7 +52,7 @@
 </template>
 
 <script>
-  import getContract from '../util/getContract'
+  import {getContract} from '../util/getContract'
 
   var getNowFormatDate = function () {
     var  date =  new  Date();
@@ -99,8 +99,9 @@
           var param = [this.project_abstract, this.project_description, 
                       Date.parse(this.dates[0]) / 1000, Date.parse(this.dates[1]) / 1000,
                       this.rise_amount]
-          getContract(param)
           console.log(JSON.stringify(input_form), input_form)
+          
+          getContract(param)
         }
       },
       computed: {

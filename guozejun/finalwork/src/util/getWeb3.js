@@ -1,7 +1,8 @@
 import Web3 from 'web3'
 
-let getWeb3 = function () {
+let getWeb3 = async function () {
   var provider
+  var address
   if(window.ethereum) {
     provider = window.ethereum
     try {
@@ -10,7 +11,14 @@ let getWeb3 = function () {
       console.error("User denied account access")
     }
     var web3 = new Web3(provider)
-    return web3
+
+    await web3.eth.getAccounts(function (error, result) {
+			if (!error) {
+				address = result
+			}
+		})
+
+    return new Array(web3, address[0])
   }
   else {
     alert("ERROR! metamask not installed!")
