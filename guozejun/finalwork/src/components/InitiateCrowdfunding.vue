@@ -52,6 +52,8 @@
 </template>
 
 <script>
+  import getContract from '../util/getContract'
+
   var getNowFormatDate = function () {
     var  date =  new  Date();
     var  seperator1 =  "-" ;
@@ -66,7 +68,7 @@
     }
     var  currentdate = year + seperator1 + month + seperator1 + strDate;
     return  currentdate;
-  };
+  }
   export default {
       name: 'InitiateCrowdfunding',
       data: () => ({
@@ -90,10 +92,15 @@
           var input_form = {
             abstract : this.project_abstract,
             description : this.project_description,
+            startTime : Date.parse(this.dates[0]) / 1000,
+            endTime : Date.parse(this.dates[1]) / 1000,
             amout : this.rise_amount,
-            date : this.dates,
-          };
-          alert(JSON.stringify(input_form))
+          }
+          var param = [this.project_abstract, this.project_description, 
+                      Date.parse(this.dates[0]) / 1000, Date.parse(this.dates[1]) / 1000,
+                      this.rise_amount]
+          getContract(param)
+          console.log(JSON.stringify(input_form), input_form)
         }
       },
       computed: {

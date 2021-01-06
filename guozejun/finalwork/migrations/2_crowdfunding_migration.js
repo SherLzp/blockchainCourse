@@ -1,5 +1,5 @@
 var Crowdfunding = artifacts.require("Crowdfunding");
 
 module.exports = function (deployer) {
-  deployer.deploy(Crowdfunding);
+  //deployer.deploy(Crowdfunding);
 };
