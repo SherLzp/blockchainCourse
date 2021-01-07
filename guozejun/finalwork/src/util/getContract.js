@@ -3,8 +3,10 @@ import { userAddr, contractManager, web3, InfoList, BallotList} from "../main"
 
 // 获取并部署众筹智能合约
 async function getContract(param) {
+    console.log(param);
     // 获取 contract
     var contract = new web3.eth.Contract(CrowdFunding["abi"])
+    console.log(contract);
     // 部署 contract
     var crowdfunding = await contract.deploy({
         data: CrowdFunding["bytecode"],

@@ -16,7 +16,7 @@ Vue.config.productionTip = false
 // 用户地址
 export var userAddr
 // 主节点地址
-export var addressAdmin = '0x465bb9D2E9f06a8D9E12fA5eEB9642c9Db3ea6e8'
+export var addressAdmin = '0x89Db02fe29E259CbAF1103A0CE5B77e9F3ECFE75'
 // web3连接
 export var web3
 export var addrlist

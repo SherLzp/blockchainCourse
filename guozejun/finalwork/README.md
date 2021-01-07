@@ -10,7 +10,6 @@
 
 请将以下全局依赖安装完成之后再运行本项目
 
-- sudo apt install nodejs
 - node
 - npm
 - truffle
@@ -22,11 +21,11 @@
 
 ### 本地私有链环境
 
-在本地启动ganache-cli，查看服务启动的端口，注意本地ganache-cli服务应该通过`./tools/init_blockchain.sh`脚本处理，该脚本会在本地的8545端口启动一个ganache-cli服务，并生成10个指定的用户
+通过`./tools/init_blockchain.sh`脚本在本地启动一个ganache-cli服务，该脚本会在本地的8545端口启动一个ganache-cli服务，并生成10个指定的用户
 
 ![img](./img/init-ganache.png)
 
-本地私有链的用户私钥列表如下
+指定的用户列表的私钥如下
 
 ```zsh
 Private Keys
@@ -57,13 +56,13 @@ development: {
 
 ### 编译并部署智能合约
 
-- 编译
+- 部署并部署
 
-    `truffle compile`
+    `truffle migrate --reset`
 
-- 部署
+- 获取管理员节点的地址
 
-    `truffle migrate`
+    ![img](./img/manger_address.png)
 
 ### 启动程序
 
@@ -71,3 +70,7 @@ development: {
 npm install
 npm run serve
 ```
+
+### 详细视频
+
+[视频链接](https://www.acfun.cn)
