@@ -73,4 +73,4 @@ npm run serve
 
 ### 详细视频
 
-[视频链接](https://www.acfun.cn)
+[视频链接](https://www.acfun.cn/v/ac21527295)
