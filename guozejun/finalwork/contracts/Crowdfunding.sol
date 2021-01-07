@@ -14,7 +14,7 @@ contract Crowdfunding {
     uint[] amounts;
 
     string BallotTitle;
-    uint AgreeAmount;
+    uint AgreeAmount; 
     uint DisagreeAmount;
     mapping(address => uint) ballotAbility;
     mapping(address => int) balloted; // 没有投过票：0 反对：-1 同意：1

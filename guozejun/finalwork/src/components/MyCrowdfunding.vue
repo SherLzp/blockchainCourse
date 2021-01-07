@@ -59,12 +59,12 @@
                         </v-list-item-avatar>
                     </v-list-item>
 
-                    <v-card-actions>
+                    <v-card-actions v-if="BallotList.size != 0 && item[4] > new Date() && (BallotList.get(item.id))[0].length == 0">
                         <v-row dense>
                             <v-col cols="12" sm="6" md="3">
                                 <v-text-field outlined
                                     label="投票议题"
-                                    v-model="item.amount"
+                                    v-model="item.ballot"
                                 >
                                 </v-text-field>
                             </v-col>
@@ -73,14 +73,25 @@
                                 outlined
                                 rounded
                                 text
-                                v-on:click="participate(userAddr, item.amount)"
+                                v-on:click="createballot(item.id, item.ballot)"
                                 >
                                 发起投票
                                 </v-btn>
                             </v-col>
                         </v-row>
-                        
-                        
+                    </v-card-actions>
+                    <v-card-actions v-else-if="BallotList">
+                        <v-row dense>
+                            <v-col cols="12" sm="6" md="3">
+                                投票议题：{{ (BallotList.get(item.id))[0] }}
+                            </v-col>
+                            <v-col cols="12" sm="6" md="3">
+                                同意比例：{{ (BallotList.get(item.id))[1] / (BallotList.get(item.id))[3] }}
+                            </v-col>
+                            <v-col cols="12" sm="6" md="3">
+                                反对比例：{{ (BallotList.get(item.id))[2] / (BallotList.get(item.id))[3]}}
+                            </v-col>
+                        </v-row>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -148,7 +159,7 @@
                         <v-row dense>
                             <v-col cols="12" sm="6" md="3">
                                 <div>
-                                    当前投票议题：{{ item[0] }}
+                                    当前投票议题：{{ (BallotList.get(item.id))[0] }}
                                 </div>
                             </v-col>
                             <v-col cols="12" sm="6" md="3">
@@ -156,7 +167,7 @@
                                 outlined
                                 rounded
                                 text
-                                v-on:click="participate(userAddr, item.amount)"
+                                v-on:click="agree(item.id)"
                                 >
                                 同意
                                 </v-btn>
@@ -166,7 +177,7 @@
                                 outlined
                                 rounded
                                 text
-                                v-on:click="participate(userAddr, item.amount)"
+                                v-on:click="disagree(item.id)"
                                 >
                                 拒绝
                                 </v-btn>
@@ -182,16 +193,20 @@
 </template>
 
 <script>
-  import {userAddr, InfoList} from "../main"
-  import {participateProj} from '../util/getContract'
+  import {userAddr, InfoList, BallotList} from "../main"
+  import {participateProj, CreateBallot, AgreeBallot, DisagreeBallot} from '../util/getContract'
   export default {
       name: 'MyCrowdfunding',
       data: () => ({
             userAddr: userAddr,
             InfoList: InfoList,
+            BallotList: BallotList,
+            agree: AgreeBallot,
+            disagree: DisagreeBallot
       }),
       methods: {
-          participate: participateProj
+            participate: participateProj,
+            createballot: CreateBallot
       }
   }
 </script>
