@@ -14,7 +14,7 @@
 
     <v-text-field
     v-model="rise_amount"
-      label="众筹金额目标"
+      label="众筹金额目标单位(ETH) 必须是整数"
       :rules="rules1"
     ></v-text-field>
 
@@ -96,9 +96,10 @@
             endTime : Date.parse(this.dates[1]) / 1000,
             amout : this.rise_amount,
           }
+          var totalWei = this.rise_amount.toString() + "000000000000000000"
           var param = [this.project_abstract, this.project_description, 
                       Date.parse(this.dates[0]) / 1000, Date.parse(this.dates[1]) / 1000,
-                      this.rise_amount]
+                      totalWei]
           console.log(JSON.stringify(input_form), input_form)
           
           getContract(param)

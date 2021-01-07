@@ -24,16 +24,31 @@ async function getContract(param) {
 }
 
 function getProjectByAddr(addr) {
-    console.log(addr, typeof(addr));
     var contract = new web3.eth.Contract(CrowdFunding["abi"], addr)
     var result
     contract.methods.GetProjectInfo().call({
         from: userAddr
     }).then((val) => {
         result = val
+        result[3] = new Date(result[3] * 1000)
+        result[4] = new Date(result[4] * 1000)
+        result["id"] = addr
+        result["amount"] = 0
         console.log(result)
         InfoList.push(result)
     })
 }
 
-export {getContract, getProjectByAddr}
+function participateProj(addr, amount) {
+    amount = amount.toString()
+    amount += "000000000000000000"
+    console.log(addr, amount, userAddr);
+    var contract = new web3.eth.Contract(CrowdFunding["abi"], addr)
+    contract.methods.Parcipate(amount, userAddr).send({
+        from: userAddr,
+        value: amount,
+        gas: '4700000'
+    })
+}
+
+export {getContract, getProjectByAddr, participateProj}

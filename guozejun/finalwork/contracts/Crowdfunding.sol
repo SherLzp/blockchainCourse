@@ -13,6 +13,11 @@ contract Crowdfunding {
     address[] participants;
     uint[] amounts;
 
+    string BallotTitle;
+    uint AgreeAmount;
+    uint DisagreeAmount;
+    mapping(address => bool) ballotAbility;
+
     constructor(string memory _projAbstract, string memory _projectDescription, uint _startTime,
                 uint _endTime, uint _riseAmount) public {
         owner = msg.sender;
