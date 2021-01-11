@@ -21,7 +21,7 @@ development: {
 }
 ```
 
-![ganache_port](.\public\ganache_port.png)
+![ganache_port](./public/ganache_port.png)
 
 Next, deploy the smart contract.
 
@@ -52,4 +52,4 @@ Start the application by the following command.
 yarn start
 ```
 
-![home](.\public\home.png)
+![home](./public/home.png)
