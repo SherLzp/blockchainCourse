@@ -1,0 +1,38 @@
+.header{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: nowrap;
+    height: 64px;
+    align-items: center;
+    box-shadow: 0 1px 5px 0 rgba(51, 51, 51, 0.14);
+    background-color: #ffffff;
+    padding-right: 15px;
+}
+
+.header-logo{
+    width: 130px;
+    height: 50px;
+    margin-left: 50px;
+    margin-right: 25px;
+}
+
+.header-title{
+    margin-top: 12px;
+    margin-left: 25px;
+    margin-right: 50px;
+    white-space:nowrap;
+}
+
+.header-state-on{
+    font-size: x-large;
+    margin-left: 800px;
+}
+
+.header-state-off{
+    font-size: x-large;
+    margin-left: 1150px;
+}
