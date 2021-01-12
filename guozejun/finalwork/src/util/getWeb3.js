@@ -13,10 +13,10 @@ let getWeb3 = async function () {
     var web3 = new Web3(provider)
 
     await web3.eth.getAccounts(function (error, result) {
-			if (!error) {
-				address = result
-			}
-		})
+      if (!error) {
+        address = result
+      }
+    })
 
     return new Array(web3, address[0])
   }
