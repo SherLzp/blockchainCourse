@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书管理</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+    <style>
+      #app {
+        margin: 1em 2em;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div id="app">
+      <el-tabs type="border-card">
+        <el-tab-pane label="所有众筹">
+          <el-divider content-position="left">所有众筹</el-divider>
+          <p>当前账户: 0x00000</p>
+          <el-table :data="card" stripe style="width: 100%;">
+            <el-table-column prop="id_no" label="众筹名">
+            </el-table-column>
+            <el-table-column prop="borrow_count" label="截止时间">
+            </el-table-column>
+            <el-table-column prop="register_date" label="当前进度">
+            </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button @click="deleteCard(scope.row)" type="danger" size="small">删除</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+          <el-row style="margin-top: 1em;">
+            <el-button @click="registerCard" type="primary">注册新图书卡</el-button>
+          </el-row>
+        </el-tab-pane>
+        <el-tab-pane label="借书">
+          <el-row>
+            <span>您要用哪张卡借书？</span>
+            <el-select v-model="chooseCard" placeholder="请选择">
+              <el-option v-for="item in card" :key="item.id_no" :value="item.id_no" :label="item.id_no">
+              </el-option>
+            </el-select>
+          </el-row>
+          <el-table :data="book" stripe style="width: 100%;">
+            <el-table-column prop="id_no" label="书籍号码">
+            </el-table-column>
+            <el-table-column prop="name" label="书名">
+            </el-table-column>
+            <el-table-column prop="author" label="作者">
+            </el-table-column>
+            <el-table-column label="借阅状态">
+              <template slot-scope="scope">
+                {{scope.row.be_borrowed ? "已借阅" : "可借"}}
+              </template>
+            </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button v-if="scope.row.be_borrowed == 0" 
+                      @click="borrowBook(scope.row)" 
+                      type="primary" 
+                      size="small">
+                      借阅
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="还书">
+          <el-row>
+            <span>选择图书卡：</span>
+            <el-select v-model="chooseCard" placeholder="请选择" @change="update">
+              <el-option v-for="item in card" :key="item.id_no" :value="item.id_no" :label="item.id_no">
+              </el-option>
+            </el-select>
+          </el-row>
+          <el-table :data="borrowedBook" stripe style="width: 100%;">
+            <el-table-column prop="book_id_no" label="书籍号码">
+            </el-table-column>
+            <el-table-column prop="name" label="书名">
+            </el-table-column>
+            <el-table-column prop="author" label="作者">
+            </el-table-column>
+            <el-table-column prop="date" label="借书时间">
+            </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button @click="returnBook(scope.row)" 
+                      type="primary"
+                      size="small">
+                  还书
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+  </body>
+</html>
+
+<script src="https://dandyxu.me/lib/canvas-nest/canvas-nest.min.js"></script>
+<script src="./js/vue.js"></script>
+<script src="./js/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      userName: '',
+      chooseCard: '',
+      card: [],
+      book: [],
+      borrowedBook: []
+    },
+    methods: {
+      registerCard() {
+        let _this = this
+        axios.get('/api/registerCard').then((res) => {
+          _this.update()
+        })
+      },
+      deleteCard(row) {
+        let _this = this
+        let cardId = row.id_no
+        axios.get(`/api/getBorrowedCard?cardId=${cardId}`).then((res)=>{
+          if(res.data.length == 0) {
+            axios.get(`/api/deleteCard?id=${cardId}`).then((res) => {
+              _this.update()
+            })
+          } else {
+            this.$message.error('有书没还!')
+            return
+          }
+        })
+      },
+      borrowBook(row) {
+        let _this = this
+        if(!_this.chooseCard) {
+          this.$message.error('必须选择借书卡！')
+          return
+        }
+        axios.get(`/api/borrowBook?id=${row.id_no}&&cardId=${_this.chooseCard}`).then((res) => {
+          _this.update()
+        })
+      },
+      returnBook(row) {
+        let _this = this
+        let bookId = row.book_id_no
+        axios.get(`/api/returnBook?bookId=${bookId}`).then((res) => {
+          _this.update()
+        })
+      },
+      update() {
+        let _this = this
+        axios.get('/api/getUserName').then((res) => {
+          _this.userName = res.data.userName
+        })
+        axios.get('/api/getCard').then((res) => {
+          while(_this.card.length)
+            _this.card.pop()
+          for(let i=0; i<res.data.length; i++)
+            _this.$set(_this.card, i, res.data[i])
+        })
+        axios.get('/api/getBook').then((res) => {
+          while(_this.book.length)
+            _this.book.pop()
+          for(let i=0; i<res.data.length; i++)
+            _this.$set(_this.book, i, res.data[i])
+        })
+        if(_this.chooseCard) {
+          axios.get(`/api/getBorrowedCard?cardId=${_this.chooseCard}`).then((res)=>{
+            while(_this.borrowedBook.length)
+              _this.borrowedBook.pop()
+            for(let i=0; i<res.data.length; i++)
+              _this.$set(_this.borrowedBook, i, res.data[i])
+          })
+        }
+      }
+    },
+    mounted() {
+      this.update()
+    }
+  })
+</script>
