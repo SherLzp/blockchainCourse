@@ -32,7 +32,7 @@
                   >赎回</el-button
                 >
                 <el-button
-                  @click="curProj = investedProjs[scope.row]"
+                  @click="onVoteBtnClick(scope.row)"
                   type="primary"
                   size="small"
                   >参与表决</el-button
@@ -103,6 +103,46 @@
         </el-form>
       </el-row>
     </el-dialog>
+    <el-dialog title="表决资金申请" :visible.sync="voteDialogVisible">
+      <el-row class="gridCommon">
+        <el-row>
+          <span>{{ curProj.name }} 项目中的资金申请</span>
+        </el-row>
+        <el-row>
+          <el-table
+            :data="appliedUses"
+            border
+            style="width: 100%"
+            max-height="250"
+          >
+            <el-table-column fixed prop="reason" label="提取理由" width="300">
+            </el-table-column>
+            <el-table-column prop="money" label="提取金额(ETH)" width="50">
+            </el-table-column>
+            <el-table-column prop="agree" label="我的表决" width="100">
+            </el-table-column>
+            <el-table-column prop="status" label="申请状态" width="100">
+            </el-table-column>
+            <el-table-column fixed="right" label="操作" width="150">
+              <template slot-scope="scope">
+                <el-button
+                  type="primary"
+                  size="small"
+                  @click="vote(scope.row, true)"
+                  >批准</el-button
+                >
+                <el-button
+                  type="danger"
+                  size="small"
+                  @click="vote(scope.row, false)"
+                  >否决</el-button
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-row>
+      </el-row>
+    </el-dialog>
   </div>
 </template>
 
@@ -114,26 +154,30 @@ export default {
 
   data() {
     return {
-      investedProjs: [],
-      investibleProjs: [],
-      allProjs: [],
+      investedProjs: [], // 已投资的众筹
+      investibleProjs: [], // 可投资的众筹
+      appliedUses: [],
+      allProjs: [], // 所有众筹
+      // 表单
       investForm: {
         money: 0,
       },
-      curProj: {},
+      curProj: {}, // 当前选中的众筹项目
+      // 对话框可见性
       investDialogVisible: false,
+      voteDialogVisible: false,
     };
   },
 
   beforeCreate() {
     this.GLOBAL.methods.addAccountChangeListener(async () => {
-      console.log("update");
+      //console.log("update");
       this.update();
     });
   },
 
   created() {
-    console.log("created");
+    //console.log("created");
     this.update();
   },
 
@@ -209,6 +253,67 @@ export default {
       }
     },
 
+    async onVoteBtnClick(row) {
+      this.curProj = row;
+
+      let accounts = await this.GLOBAL.web3.eth.getAccounts();
+      let account = accounts[0];
+
+      let num = await this.GLOBAL.contract.methods
+        .getUseLenOf(this.curProj.id)
+        .call();
+
+      this.appliedUses = [];
+      for (let i = 1; i <= num; i++) {
+        try {
+          let line = await this.GLOBAL.contract.methods
+            .getUseOf(account, this.curProj.id, i)
+            .call();
+
+          let status = "待定";
+          if (line[2] == 1) status = "通过";
+          else if (line[2] == 2) status = "否决";
+
+          let agree = "待定";
+          if (line[3] == 1) agree = "通过";
+          else if (line[3] == 2) agree = "否决";
+
+          this.appliedUses.push({
+            reason: line[0],
+            money: Web3.utils.fromWei(line[1], "ether"),
+            status: status,
+            agree: agree,
+            id: i,
+          });
+        } catch (e) {
+          console.log("error");
+        }
+      }
+      this.voteDialogVisible = true;
+    },
+
+    async vote(row, agree) {
+      let accounts = await this.GLOBAL.web3.eth.getAccounts();
+      let account = accounts[0];
+
+      try{
+        console.log(row.id);
+        console.log(this.curProj.id);
+        console.log(agree);
+        await this.GLOBAL.contract.methods.agreeUse(this.curProj.id, row.id, agree).send({
+          from: account,
+          gas: 1000000,
+        })
+        if(agree == true)
+          alert("同意申请，表决成功");
+        else 
+          alert("否决申请，表决成功");
+      }catch(e){
+        alert("表决失败");
+      }
+      this.voteDialogVisible = false;
+    },
+
     onInvestBtnClick(row) {
       this.curProj = row;
       this.investDialogVisible = true;
@@ -217,7 +322,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          alert("submit: " + formName);
+          //alert("submit: " + formName);
           if (formName == "investForm") {
             let accounts = await this.GLOBAL.web3.eth.getAccounts();
             let account = accounts[0];

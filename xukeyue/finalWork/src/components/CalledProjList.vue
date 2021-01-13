@@ -96,10 +96,7 @@
                 <el-button
                   type="primary"
                   size="small"
-                  @click="
-                    getMoneyDialogVisible = true;
-                    curProj = scope.row;
-                  "
+                  @click="onGetMoneyBtnClick(scope.row)"
                   >提取资金</el-button
                 >
               </template>
@@ -109,56 +106,76 @@
       </el-col>
     </el-row>
     <el-dialog title="提取资金申请" :visible.sync="getMoneyDialogVisible">
-      <el-form
-        ref="getMoneyForm"
-        :model="getMoneyForm"
-        label-width="80px"
-        class="gridCommon"
-      >
-        <el-form-item
-          prop="reason"
-          label="申请提款理由"
-          :rules="[{ required: true, message: '理由不能为空' }]"
-        >
-          <el-input
-            type="textarea"
-            :rows="5"
-            v-model="getMoneyForm.reason"
-          ></el-input>
-        </el-form-item>
-        <el-form-item
-          prop="money"
-          label="提款量"
-          :rules="[
-            { required: true, message: '价格不能为空' },
-            { type: 'number', message: '价格必须为数字值' },
-          ]"
-        >
-          <el-input v-model.number="getMoneyForm.money"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('getMoneyForm')"
-            >申请</el-button
+      <el-row class="gridCommon">
+        <el-row>
+          <span>您在 {{ curProj.name }} 项目中已申请的资金提取</span>
+        </el-row>
+        <el-row>
+          <el-table
+            :data="appliedUses"
+            border
+            style="width: 100%"
+            max-height="250"
           >
-        </el-form-item>
-      </el-form>
+            <el-table-column fixed prop="reason" label="提取理由" width="300">
+            </el-table-column>
+            <el-table-column prop="money" label="提取金额(ETH)" width="150">
+            </el-table-column>
+            <el-table-column prop="status" label="申请状态" width="150">
+            </el-table-column>
+          </el-table>
+        </el-row>
+      </el-row>
+      <el-row class="gridCommon">
+        <el-form
+          ref="getMoneyForm"
+          :model="getMoneyForm"
+          label-width="80px"
+          class="gridCommon"
+        >
+          <el-form-item
+            prop="reason"
+            label="申请提款理由"
+            :rules="[{ required: true, message: '理由不能为空' }]"
+          >
+            <el-input
+              type="textarea"
+              :rows="5"
+              v-model="getMoneyForm.reason"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            prop="money"
+            label="提款量"
+            :rules="[
+              { required: true, message: '价格不能为空' },
+              { type: 'number', message: '价格必须为数字值' },
+            ]"
+          >
+            <el-input v-model.number="getMoneyForm.money"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitForm('getMoneyForm')"
+              >申请</el-button
+            >
+          </el-form-item>
+        </el-form>
+      </el-row>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import Web3 from 'web3';
-//import Crowdfunding from '../Crowdfunding.json'
+import Web3 from "web3";
 
 export default {
   name: "CalledProjList",
 
   data() {
     return {
-      currentAddress: "",
-
-      calledProjs: [],
-
+      calledProjs: [], // 用户发起的众筹
+      appliedUses: [], // 用户发起的提取资金申请
+      // 表单 {
       newProjForm: {
         name: "",
         deadLine: "",
@@ -169,18 +186,13 @@ export default {
         reason: "",
         money: 0,
       },
-
-      curProj: 0,
-      getMoneyDialogVisible: false,
+      // }
+      curProj: 0, // 当前选中项目
+      getMoneyDialogVisible: false, // 对话框可见性
     };
   },
 
-  mounted() {
-    // this.calledProjs = [
-    //   { name: "ddddd", deadLine: "2018" },
-    //   { name: "ccccc", deadLine: "2018" },
-    // ];
-  },
+  mounted() {},
 
   beforeCreate() {
     this.GLOBAL.methods.addAccountChangeListener(async () => {
@@ -214,8 +226,7 @@ export default {
         let proj = await this.GLOBAL.contract.methods.globalProjList(i).call();
 
         if (account != proj.caller) continue;
-        
-        console.log(new Date(proj.deadLine * 1000));
+
         let ddl = new Date(proj.deadLine * 1000);
         let curTime = new Date();
         let status = "完成";
@@ -234,14 +245,46 @@ export default {
       }
     },
 
+    async onGetMoneyBtnClick(row) {
+      this.curProj = row;
+
+      let accounts = await this.GLOBAL.web3.eth.getAccounts();
+      let account = accounts[0];
+
+      let num = await this.GLOBAL.contract.methods
+        .getUseLenOf(this.curProj.id)
+        .call();
+      console.log(num);
+      this.appliedUses = [];
+      for (let i = 1; i <= num; i++) {
+        try {
+          let line = await this.GLOBAL.contract.methods
+            .getUseOf(account, this.curProj.id, i)
+            .call();
+          console.log(line);
+          let status = "待定";
+          if (line[2] == 1) status = "通过";
+          else if (line[2] == 2) status = "否决";
+          this.appliedUses.push({
+            reason: line[0],
+            money: Web3.utils.fromWei(line[1], "ether"),
+            status: status,
+          });
+        } catch (e) {
+          console.log("error");
+        }
+      }
+      this.getMoneyDialogVisible = true;
+    },
+
     submitForm(formName) {
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          alert("submit: " + formName);
+          //alert("submit: " + formName);
+          let accounts = await this.GLOBAL.web3.eth.getAccounts();
+          let account = accounts[0];
           if (formName == "newProjForm") {
             let h = new Date(this.newProjForm.deadLine).getTime() / 1000;
-            let accounts = await this.GLOBAL.web3.eth.getAccounts();
-            let account = accounts[0];
             try {
               // console.log(this.newProjForm.deadLine);
               // console.log(h);
@@ -252,7 +295,7 @@ export default {
                   account,
                   this.newProjForm.name,
                   this.newProjForm.info,
-                  Web3.utils.toWei(this.newProjForm.need.toString(10),'ether'),
+                  Web3.utils.toWei(this.newProjForm.need.toString(10), "ether"),
                   h
                 )
                 .send({
@@ -265,7 +308,25 @@ export default {
               alert("发起众筹失败");
             }
           } else if (formName == "getMoneyForm") {
-            alert("啊");
+            try {
+              await this.GLOBAL.contract.methods
+                .createUse(
+                  this.curProj.id,
+                  Web3.utils.toWei(
+                    this.getMoneyForm.money.toString(10),
+                    "ether"
+                  ),
+                  this.getMoneyForm.reason
+                )
+                .send({
+                  from: account,
+                  gas: 1000000,
+                });
+              alert("提取资金申请成功");
+            } catch (e) {
+              alert("提取资金申请失败");
+            }
+            this.getMoneyDialogVisible = false;
           }
         } else {
           console.log("error submit!!");

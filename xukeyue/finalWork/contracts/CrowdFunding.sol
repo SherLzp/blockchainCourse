@@ -10,10 +10,14 @@ contract Crowdfunding {
 
     // 使用记录
     struct Use {
+        uint8 status; // 0:待定 1:通过 2:否决
         uint256 money; // 提取数额
-        uint256 agreeMoney; // 初始值为筹款总数，同意票将增加其值，否定票将减少其值
-        bool isFinished; // true表示成功
+        uint256 agreeMoney; // 初始值0，同意票将增加其值
+        uint256 disagreeMoney; // 初始值0，否定票将增加其值
         string reason; // 使用资金申请理由
+        // key: Project.fundList.idx
+        // val: 0: 未表决 1: 同意 2: 不同意
+        mapping(uint256 => uint8) agreeList;
     }
     // 众筹项目
     struct Project {
@@ -78,7 +82,7 @@ contract Crowdfunding {
         // 判断是否完成筹资
         if (p.curFund >= p.need) {
             p.isFinished = true;
-            p.need = p.curFund; // 更新need为历史最大值
+            p.need = p.curFund; // 更新need为历史最大值，即最终成功筹款数额
         }
     }
 
@@ -89,6 +93,7 @@ contract Crowdfunding {
     {
         // 约束条件：idx合法，该众筹项目存在
         require(idx >= 1 && idx <= globalProjListLen);
+
         uint256 myFunding = 0;
         Project storage p = globalProjList[idx];
         for (uint256 i = 1; i <= p.fundListLen; i++) {
@@ -132,10 +137,11 @@ contract Crowdfunding {
         Project storage p = globalProjList[idx];
         p.useListLen += 1;
         Use storage u = p.useList[p.useListLen];
+        u.status = 0;
         u.money = money;
         u.reason = reason;
-        u.agreeMoney = p.need; // 初始值为need，同意票将增加其值，否定票将减少其值
-        u.isFinished = false;
+        u.agreeMoney = 0;
+        u.disagreeMoney = 0;
     }
 
     function agreeUse(
@@ -147,29 +153,76 @@ contract Crowdfunding {
         require(idx >= 1 && idx <= globalProjListLen);
         // 约束条件：uidx合法
         require(uidx >= 1 && uidx <= globalProjList[idx].useListLen);
-        // 约束条件：使用请求未批准
-        require(!globalProjList[idx].useList[uidx].isFinished);
+        // 约束条件：使用请求待定
+        require(globalProjList[idx].useList[uidx].status == 0);
 
         Project storage p = globalProjList[idx];
-        for (uint256 fidx = 1; fidx < p.fundListLen; fidx++) {
-            // 资助者才能投票
-            if (p.fundList[fidx].funderAddr == msg.sender) {
-                Use storage u = p.useList[uidx];
+        Use storage u = p.useList[uidx];
+        for (uint256 fidx = 1; fidx <= p.fundListLen; fidx++) {
+            // 资助 并且 未表决者才能投票
+            if (
+                p.fundList[fidx].funderAddr == msg.sender &&
+                p.useList[uidx].agreeList[fidx] == 0
+            ) {
                 if (agree) {
                     u.agreeMoney += p.fundList[fidx].money;
+                    u.agreeList[fidx] = 1;
                 } else {
-                    u.agreeMoney -= p.fundList[fidx].money;
+                    u.disagreeMoney += p.fundList[fidx].money;
+                    u.agreeList[fidx] = 2;
                 }
 
-                // 检查是否已经合格
-                if (u.agreeMoney > (p.need * 3) / 2) {
-                    u.isFinished = true;
-                    // 若批准则转钱
+                // 检查是否已经半数（资金）通过 或 半数否决
+                if (2 * u.agreeMoney >= p.need) {
+                    u.status = 1;
+                    // 若通过则转钱
                     p.curFund -= u.money;
                     p.caller.transfer(u.money);
+                } else if (2*u.disagreeMoney >= p.need) {
+                    u.status = 2;
                 }
-                break;
             }
+        }
+    }
+
+    function getUseLenOf(uint256 idx) public view returns (uint256) {
+        // 约束条件：idx合法，该众筹项目存在
+        require(idx >= 1 && idx <= globalProjListLen);
+        return globalProjList[idx].useListLen;
+    }
+
+    function getUseOf(
+        address funder,
+        uint256 idx,
+        uint256 uidx
+    )
+        public
+        view
+        returns (
+            string memory,
+            uint256,
+            uint8,
+            uint8
+        )
+    {
+        // 约束条件：idx合法，该众筹项目存在
+        require(idx >= 1 && idx <= globalProjListLen);
+        // 约束条件：uidx合法
+        require(uidx >= 1 && uidx <= globalProjList[idx].useListLen);
+
+        Project storage p = globalProjList[idx];
+        // 找到funder的一个fund
+        uint256 fidx = 0;
+        for (fidx = 1; fidx <= p.fundListLen; fidx++) {
+            if (p.fundList[fidx].funderAddr == funder) break;
+        }
+
+        Use storage u = p.useList[uidx];
+        if (fidx == p.fundListLen + 1) {
+            // funder不是资助者，即funder有可能是发起人，也返回信息
+            return (u.reason, u.money, u.status, 0);
+        } else {
+            return (u.reason, u.money, u.status, u.agreeList[fidx]);
         }
     }
 }

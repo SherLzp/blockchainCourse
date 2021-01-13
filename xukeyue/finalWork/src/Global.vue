@@ -7,7 +7,7 @@ const web3 = new Web3(window.ethereum);
 //const web3 = new Web3.providers.HttpProvider("http://127.0.0.1:7545");
 const contract = new web3.eth.Contract(
   Crowdfunding.abi,
-  "0x1d73CD48f88271166E7719b9458540471F7675F0"
+  "0x7f9879980B0f36A36547cc16B2a452C84A3bDDa2"
 );
 
 export default {
@@ -17,7 +17,7 @@ export default {
 
   methods: {
     addAccountChangeListener(callback) {
-      console.log('add listner');
+      //console.log('add listner');
       window.ethereum.on('accountsChanged', callback)
     }
   }
