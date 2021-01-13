@@ -30,9 +30,10 @@
    cd ./future-funding-client
    npm install
    npm start
-```
+   ```
+
    
-   
+
 
 ## 运行截图
 
@@ -59,4 +60,3 @@
 ![pj](assests/create_proposal.png)
 
 <center>资金使用请求发起</center>
-
