@@ -1,6 +1,6 @@
 Step to run this project. (included video)
 
-1.truffle migrate and npm start run react DAPP 运行
+1.truffle migrate and npm start run react DAPP, after migrate then copy the fundingCompany contract's address and paste it at the fundingCompanyInstance.js with the companyAddress='the address you copy'. 运行然后复制合约地址到fundingCompanyInstance.js的companyAddress里。
 
 2.create new funding 新建项目，只有创建人自己看到。
 
