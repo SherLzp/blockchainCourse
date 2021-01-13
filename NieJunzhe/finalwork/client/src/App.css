@@ -1,0 +1,63 @@
+.PxOutSide{
+  width:100%;
+  min-height:100vh;
+  background: #efefef;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.PxInSide{
+  width:80%;
+  background: #efefef;
+  min-width: 1280px;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  align-items: center;
+}
+.PxUnderBar{
+  width:80%;
+  background: #efefef;
+  min-width: 1280px;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.pxIndexPageSearchBar{
+  width:100%;
+  height:10%;
+  background: #efefef;
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.pxIndexLogo{
+  width:30%;
+  margin-left:1%;
+}
+
+
+
+.pxIndexPageSearch{
+  width:70%;
+  height:30%;
+  padding-right: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.ant-carousel{
+  width: 100%;
+  min-height: 300px;
+  margin-bottom: 2%;
+}
