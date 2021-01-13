@@ -7,7 +7,7 @@
 - 在ganache软件的Accounts栏中复制私钥，向MetaMask钱包插件中导入3个账号。
 - 重新回到final目录执行命令“truffle compile”和“truffle migrate”。
 - 将final/build/contracts下的CrowdFunding.json文件复制到final/src目录下，进行替换。
-- 回到final目录输入命令安装相关模块：“yarn add @material-ui/core”
+- 回到final目录输入命令安装相关模块：“yarn add @material-ui/core”, “npm install”
 - 输入命令编译运行：“yarn serve”
 - 在浏览器上通过http://localhost:8080访问网页
 
