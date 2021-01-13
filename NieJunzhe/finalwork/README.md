@@ -16,13 +16,13 @@
 
 # 成功界面截图
 
-![image-20210113014110718](/Users/niejunzhe/Documents/README.assets/image-20210113014110718.png)
+![image-20210113014110718](README.assets/image-20210113014110718-0552495.png)
 
-![image-20210113014136432](/Users/niejunzhe/Documents/README.assets/image-20210113014136432.png)
+![image-20210113014136432](README.assets/image-20210113014136432-0552490.png)
 
-![image-20210113014404298](/Users/niejunzhe/Documents/README.assets/image-20210113014404298.png)
+![image-20210113014404298](README.assets/image-20210113014404298-0552484.png)
 
-![image-20210113014237370](/Users/niejunzhe/Documents/README.assets/image-20210113014237370.png)
+![image-20210113014237370](README.assets/image-20210113014237370-0552476.png)
 
-![image-20210113014258613](/Users/niejunzhe/Documents/README.assets/image-20210113014258613.png)
+![image-20210113014258613](README.assets/image-20210113014258613-0552471.png)
 
