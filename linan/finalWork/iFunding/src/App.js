@@ -147,8 +147,8 @@ class InvestView extends React.Component {
 class RequestView extends React.Component {
   render() {
     const invested = () => (parseInt(this.props.investAmount) !== 0)
-    const approved = (item) => (parseInt(item.approveVotes) > parseInt(item.totalAmount)/2)
-    const disapproved = (item) => (parseInt(item.disapproveVotes) > parseInt(item.totalAmount)/2)
+    const approved = (item) => (parseInt(item.approveVotes) > parseInt(this.props.totalAmount)/2)
+    const disapproved = (item) => (parseInt(item.disapproveVotes) > parseInt(this.props.totalAmount)/2)
     const finished = (item) => (approved(item) || disapproved(item))
     const tag = (item) => (approved(item) ? 
       <Tag color="success">通过</Tag> :
