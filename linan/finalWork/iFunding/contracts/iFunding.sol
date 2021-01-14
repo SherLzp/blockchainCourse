@@ -156,15 +156,15 @@ contract Funding {
     }
 
     function vote(address _sender, uint256 j, bool approve) payable public {
-        require(requests[j].approveVotes < (requests[j].totalAmount+1)/2);
-        require(requests[j].disapproveVotes < (requests[j].totalAmount+1)/2);
+        require(requests[j].approveVotes < (totalAmount+1)/2);
+        require(requests[j].disapproveVotes < (totalAmount+1)/2);
         require(investerIndex[_sender] != 0);
         require(requests[j].isVoted[_sender] == false);
         
         requests[j].isVoted[_sender] = true;
         if(approve) {
             requests[j].approveVotes += investAmount[_sender];
-            if(requests[j].approveVotes >= (requests[j].totalAmount+1)/2){
+            if(requests[j].approveVotes >= (totalAmount+1)/2){
                 launcher.transfer(requests[j].totalAmount);
             }
         } else {
