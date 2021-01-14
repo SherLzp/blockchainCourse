@@ -33,21 +33,21 @@
 
 #### 1. 浏览项目页面
 
-![1](.\images\1.png)
+![1](images/1.png)
 
 #### 2. 我的众筹页面
 
-![2](.\images\2.png)
+![2](images/2.png)
 
 #### 3. 项目详情页面
 
-![3](.\images\3.png)
+![3](images/3.png)
 
 #### 4. 发起众筹页面
 
-![4](.\images\4.png)
+![4](images/4.png)
 
 #### 5. 发起使用请求页面
 
-![5](.\images\5.png)
+![5](images/5.png)
 
