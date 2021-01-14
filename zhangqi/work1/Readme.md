@@ -4,7 +4,7 @@
 
 - 运行截图
 
-	![截屏2020-12-11 上午11.33.04](/Users/zhangqi/Desktop/大三上/区块链与数字货币/blockchainCourse/zhangqi/work1/Readme.assets/截屏2020-12-11 上午11.33.04.png)
+	![截屏2020-12-11 上午11.33.04](Readme.assets/截屏2020-12-11 上午11.33.04.png)
 
-	![截屏2020-12-11 上午11.33.36](/Users/zhangqi/Desktop/大三上/区块链与数字货币/blockchainCourse/zhangqi/work1/Readme.assets/截屏2020-12-11 上午11.33.36.png)
+	![截屏2020-12-11 上午11.33.36](Readme.assets/截屏2020-12-11 上午11.33.36.png)
 
