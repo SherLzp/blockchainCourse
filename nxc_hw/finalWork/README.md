@@ -33,7 +33,7 @@
 
 - 显示“我”参与的众筹
 
-![](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20210113213546657.png)
+![image-20210113213546657](C:\Users\HP\AppData\Roaming\Typora\typora-user-images\image-20210113213546657.png)
 
 
 
