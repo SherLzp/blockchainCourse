@@ -1,0 +1,1 @@
+// the same as CardList, but has the restriction of not show funds which unfinished equals to true
