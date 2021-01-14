@@ -1,10 +1,12 @@
 # Future Funding DApp
 
+## 技术栈
+
+react.js + web3.js + solidity + truffle suite
+
 ## 环境配置
 
 0. 配置 truffle 等环境
-
-
 
 1. 编译合约到本地链 Ganache 上
 
