@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CrowdFunding</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/funding.css"/>
+
+    <script src="/bootstrap/js/jquery.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <div class="title">
+      <div class="pic"><img src="/images/logo.jpg"/></div>
+      <p>去中心化众筹Dapp</p>
+      <h1>当前账户：<%= user %></h1>
+    </div>
+    <style>
+      body{
+        background-color: rgb(255, 255, 255); 
+      }
+      .title{
+        position:relative;
+      }   
+      .pic img{
+        width:100%;
+      } 
+      .title p{
+        position:absolute;
+        top:80px;
+        left:120px;
+        color:white;
+        font-size:33px;
+        font-family: "华文行楷";
+      } 
+      .title h1{
+        position:absolute;
+        top:120px;
+        left:420px;
+        color:white;
+        font-size:15px;
+      }
+    </style>
+  </head>
+  
+  <body>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                        <input id="tab1" type="radio" name="tabs" style="display: none;"  checked>
+                        <label for="tab1"> 所有众筹</label>
+                        
+                        <input id="tab2" type="radio" name="tabs"style="display: none;">
+                        <label for="tab2"> 我参与的</label>
+                        
+                        <input id="tab3" type="radio" name="tabs"style="display: none;">
+                        <label for="tab3"> 我创建的</label>
+                        
+                        <a><button class="btn btn-primary" style="float:right" onclick="showModal('_add')"> 发起众筹</button></a>
+                        
+                        <section id="content1">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>众筹名称</th>
+                                        <th>截止时间</th>
+                                        <th>众筹进度(eth)</th>
+                                        <th>众筹状态</th>
+                                        <th>加入众筹</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(let i = 0;i<all_fundings.length;i++) { %>
+                                        <% let funding = all_fundings[i]; %>
+                                    <tr>
+                                        <td><a href="/details?addr=<%= funding.address %>"><%= funding.name %></a></td>
+                                        <td><%= funding.endTime %></td>
+                                        <td><%= funding.present %>/<%= funding.target %></td>
+                                        <td>
+                                            <% if (funding.status == 1){ %>众筹结束
+                                        </td>
+                                        <td>
+                                            不可加入
+                                        </td>
+                                            <% } else if(funding.status == 0) { %>众筹中
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <input type="text" name="support<%= funding.address %>" placeholder="投资金额">
+                                                <a><button class="btn btn-secondary" onclick="attendFunding('<%= funding.address %>')"> 投资</button></a>
+                                            </div>
+                                        </td>
+                                            <% } else { %>众筹失败
+                                        </td>
+                                        <td>
+                                            不可加入
+                                        </td>
+                                            <% } %>                                       
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>       
+                        </section>
+                            
+                        <section id="content2">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>众筹名称</th>
+                                        <th>截止时间</th>
+                                        <th>众筹进度(eth)</th>
+                                        <th>众筹状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(let i = 0;i<attended_fundings.length;i++) { %>
+                                        <% let funding = attended_fundings[i]; %>
+                                        <tr>
+                                        <td><a href="/details?addr=<%= funding.address %>"><%= funding.name %></a></td>
+                                        <td><%= funding.endTime %></td>
+                                        <td><%= funding.present %>/<%= funding.target %></td>
+                                        <td>
+                                            <% if (funding.status == 1){ %> 众筹结束
+                                            <% } else if(funding.status == 0) { %>众筹中
+                                            <% } else { %>众筹失败
+                                            <% } %>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </section>
+                            
+                        <section id="content3">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>众筹名称</th>
+                                        <th>截止时间</th>
+                                        <th>众筹进度(eth)</th>
+                                        <th>众筹状态</th>
+                                        <th>众筹退款</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(let i = 0;i<created_fundings.length;i++) { %>
+                                        <% let funding = created_fundings[i]; %>
+                                        <tr>
+                                        <td><a href="/details?addr=<%= funding.address %>"><%= funding.name %></a></td>
+                                        <td><%= funding.endTime %></td>
+                                        <td><%= funding.present %>/<%= funding.target %></td>
+                                        <td>
+                                            <% if (funding.status == 1){ %>众筹结束
+                                        </td>
+                                        <td>
+                                            不可退款
+                                        </td>
+                                            <% } else if(funding.status == 0) { %>众筹中
+                                        </td>
+                                        <td>
+                                            不可退款
+                                        </td>
+                                            <% } else { %>众筹失败
+                                        </td>
+                                        <td>
+                                            <a><button class="btn btn-secondary"  onclick="refund('<%= funding.address %>')"><span class="glyphicon glyphicon-plus"
+                                                        aria-hidden="true"></span> 退款</button></a>                                         
+                                        </td>
+                                            <% } %>
+                                        </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </section>
+                </div>    
+            </div>
+        </div>
+    
+    <div class="modal fade" id="modal_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">
+                        发起众筹
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="field">
+                        <label style="color:black;cursor:default">众筹名称</label>
+                        <input type="text" name="fundingNameAdd">
+                    </div>
+                    <div class="field">
+                        <label style="color:black;cursor:default">目标金额</label>
+                        <input type="text" name="targetMoney" placeholder="eth">
+                    </div>
+                    <div class="field">
+                        <label style="color:black;cursor:default">持续时间</label>
+                        <input type="text" name="duration" placeholder="秒">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="createFunding()">提交
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
+
+<script>
+    function showModal(id) {
+		$('#'+'modal'+id).modal('show');
+	}        
+    function createFunding(){
+        $.ajax({
+        dataType: "json",
+        type: "post",
+        url: "/createFunding",
+        data: {
+            name: $("input[name='fundingNameAdd']").val(),
+            target: $("input[name='targetMoney']").val(),
+            duration: $("input[name='duration']").val(),
+        },
+        success: (data) => {
+            if (data.status == 1) {
+            alert("新建成功！");
+            window.location.reload();
+            } else alert(data.msg);
+        },
+        error: (err) => {
+            alert("与服务器连接异常，请稍后再试!");
+        },
+        });
+    }
+    function attendFunding(addr){
+        console.log(addr);
+        $.ajax({
+            dataType: "json",
+            type: "post",
+            url: "/attendFunding",
+            data: {
+                address: addr,
+                money: $("input[name='support"+addr +"']").val()
+            },
+            success: (data) => {
+                if (data.status == 1) {
+                alert("加入成功！");
+                window.location.reload();
+                } else{
+                alert("加入失败！");
+                console.log(data.msg);
+                }
+            },
+            error: (err) => {
+                alert("与服务器连接异常，请稍后再试!");
+            },
+        });
+    }
+    function refund(addr){
+        console.log(addr);
+        $.ajax({
+            dataType: "json",
+            type: "post",
+            url: "/refund",
+            data: {
+                address: addr
+            },
+            success: (data) => {
+                if (data.status == 1) {
+                    alert("退款成功！");
+                    window.location.reload();
+                } else{
+                    alert("退款失败！");
+                    console.log(data.msg);
+                }
+            },
+            error: (err) => {
+                alert("与服务器连接异常，请稍后再试!");
+            },
+        });
+    }
+</script>
