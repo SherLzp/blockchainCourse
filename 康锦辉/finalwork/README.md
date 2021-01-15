@@ -18,7 +18,7 @@ truffle deploy / truffle migrate
 
 部署合约，将Crowdfund合约的地址更新到frontend/src/backend/contract.js文件中
 
-![image-20210115202543248](C:\Users\PumpKin\AppData\Roaming\Typora\typora-user-images\image-20210115202543248.png)
+![image-20210115202543248](imgs\image-20210115202543248.png)
 
 
 
@@ -50,4 +50,4 @@ npm start
 
 成功运行示例：
 
-![image-20210115201541265](C:\Users\PumpKin\AppData\Roaming\Typora\typora-user-images\image-20210115201541265.png)
+![image-20210115201541265](imgs\image-20210115201541265.png)
