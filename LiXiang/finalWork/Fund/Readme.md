@@ -21,23 +21,23 @@ React+Solidity+Node.js
 
 4. 在Ganache中查看合约部署地址，并复制到/src/eth/Crowdfunding.js文件中的第三行
 
-   ![](.\asset\address.JPG)
+   ![](./asset/address.JPG)
 
 5. 接下来安装依赖，可以采用npm或者yarn的方式分别为: npm install/yarn install，建议采用yarn，因为运行速度更快。
 
 6. 运行项目，直接在VScode的npm脚本中选择运行或者在命令行里输入npm start即可。
 
-   ![1610675402440](C:\Users\14262\AppData\Roaming\Typora\typora-user-images\1610675402440.png)
+   ![](./asset/npm.JPG)
 
 ### 项目运行成功后截图
 
 项目概览
 
-![](.\asset\home.JPG)
+![](./asset/home.JPG)
 
 项目详细信息即各项操作
 
-![](.\asset\detail.JPG)
+![](./asset/detail.JPG)
 
 
 
