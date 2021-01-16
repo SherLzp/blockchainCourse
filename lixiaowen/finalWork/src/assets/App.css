@@ -1,0 +1,21 @@
+@import '~antd/dist/antd.css';
+
+.topbutton{
+    margin-top:20px;
+    margin-left: 175px;
+    margin-right: 175px;
+    padding: 10px;
+}
+#components-layout-demo-responsive .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+  }
+  
+  .site-layout-sub-header-background {
+    background: #fff;
+  }
+  
+  .site-layout-background {
+    background: #fff;
+  }
