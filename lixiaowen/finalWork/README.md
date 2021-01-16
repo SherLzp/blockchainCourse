@@ -1,7 +1,7 @@
 ## README
 
 1. **运行**
-   - 将目录下的CrowdFund.sol文件上传至Remix，进行编译
+   - 将目录下的CrowdFund.sol与Project.sol文件上传至Remix，进行编译
    - 打开Ganache，使用默认的8545端口
    - 在Remix官网上选择Web3Provider进行部署
    - 将生成的Adress复制后替换config.js中的CROWDFUNDINHG_ADDRESS变量
