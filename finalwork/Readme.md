@@ -32,14 +32,14 @@
 
 
 
-![image-20210117233620692](C:\Users\Neo\WebstormProjects\finalwork\assets\image-20210117233620692.png)
+![image-20210117233620692](./assets/image-20210117233620692.png)
 
 
 
-![image-20210117233632699](C:\Users\Neo\WebstormProjects\finalwork\assets\image-20210117233632699.png)
+![image-20210117233632699](./assets/image-20210117233632699.png)
 
 
 
 
 
-![image-20210117234441415](C:\Users\Neo\WebstormProjects\finalwork\assets\image-20210117234441415.png)
+![image-20210117234441415](./assets/image-20210117234441415.png)
