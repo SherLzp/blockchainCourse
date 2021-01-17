@@ -12,7 +12,7 @@
             <el-input required="true" type="textarea" v-model="form.introduction"></el-input>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="onSubmit">请求使用</el-button>
+            <el-button @click="onSubmit">请求使用</el-button>
             <el-button @click="onCancel">取消</el-button>
         </el-form-item>
         </el-form>   

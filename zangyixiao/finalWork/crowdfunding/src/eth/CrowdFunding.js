@@ -312,6 +312,6 @@ let abi = [
 		"type": "function"
 	}
 ]
-let address = '0x20D69794e249e76B80B138A7A62370205cE41e96'
+let address = '0x284a71E7Aaca766D15B0f2BcE58a777E332364C9'
 let contractInstance = new web3.eth.Contract(abi, address)
 module.exports = contractInstance

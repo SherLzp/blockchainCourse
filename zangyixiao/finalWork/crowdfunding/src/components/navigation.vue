@@ -59,7 +59,7 @@ export default {
 <style scoped>
 .mainNav {
   background-color: #301105;
-  height: 50px;
+  height: 90px;
   padding: 0 160px;
   font-size: 16px;
   font-family: 微软雅黑;
@@ -69,7 +69,7 @@ export default {
 }
 
 .navButton {
-  font-size: 20px;
+  font-size: 40px;
   color: white;
   text-decoration: none;
   position: relative;
@@ -99,7 +99,7 @@ export default {
 .positionRight {
   position: absolute;
   right: 160px;
-  top: 14px;
+  top: 32px;
 }
 
 .el-dropdown-link {
