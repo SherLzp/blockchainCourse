@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\contracts",
+    "\\migrations",
+    "\\public",
+    "\\src",
+    "\\src\\utils",
+    "\\test"
+  ],
+  "SelectedNode": "\\package.json",
+  "PreviewInSolutionExplorer": false
+}
