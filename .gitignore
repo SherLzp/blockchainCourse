@@ -1,3 +1,28 @@
 .DS_Store
 *.out
 *.o
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+黄沈一/finalWork/node_modules
+黄沈一/finalWork/ethereum/node_modules
+黄沈一/finalwork/.pnp
+黄沈一/finalwork/.pnp.js
+
+# testing
+黄沈一/finalWork/coverage
+
+# production
+黄沈一/finalwork/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
