@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ZhongChouDApp</title>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href="/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/stylesheets/activity.css"/>
+    <link rel="stylesheet" href="/Font-Awesome-3.2.1/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/stylesheets/lychee.css"/>
+    <script src="/jquery/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="#"/>
+    <style>
+      body{
+        background: url(images/bgm.png) repeat center center;
+        background-size: cover; 
+      }
+      
+    </style>
+    <style type="text/css">
+        body:hover,body:focus{
+   outline: none;
+   text-decoration: none;
+}
+.tab .nav-tabs{
+   padding-left: 15px;
+   border-bottom: 4px solid #692f6c;
+}
+.tab .nav-tabs li a{
+   color: #fff;
+   padding: 10px 20px;
+   margin-right: 10px;
+   background: #692f6c;
+   text-shadow: 1px 1px 2px #000;
+   border: none;
+   border-radius: 0;
+   opacity: 0.5;
+   position: relative;
+   transition: all 0.3s ease 0s;
+}
+.tab .nav-tabs li a:hover{
+   background: #692f6c;
+   opacity: 0.8;
+}
+.tab .nav-tabs li.active a{
+   opacity: 1;
+}
+.tab .nav-tabs li.active a,
+.tab .nav-tabs li.active a:hover,
+.tab .nav-tabs li.active a:focus{
+   color: #fff;
+   background: #692f6c;
+   border: none;
+   border-radius: 0;
+}
+.tab .nav-tabs li a:before,
+.tab .nav-tabs li a:after{
+   content: "";
+   border-top: 42px solid transparent;
+   position: absolute;
+   top: -2px;
+}
+.tab .nav-tabs li a:before{
+   border-right: 15px solid #692f6c;
+   left: -15px;
+}
+.tab .nav-tabs li a:after{
+   border-left: 15px solid #692f6c;
+   right: -15px;
+}
+.tab .nav-tabs li a i,
+.tab .nav-tabs li.active a i{
+   display: inline-block;
+   padding-right: 5px;
+   font-size: 15px;
+   text-shadow: none;
+}
+.tab .nav-tabs li a span{
+   display: inline-block;
+   font-size: 14px;
+   letter-spacing: -9px;
+   opacity: 0;
+   transition: all 0.3s ease 0s;
+}
+.tab .nav-tabs li a:hover span,
+.tab .nav-tabs li.active a span{
+   letter-spacing: 1px;
+   opacity: 1;
+   transition: all 0.3s ease 0s;
+}
+.tab .tab-content{
+   padding: 30px;
+   background: #fff;
+   font-size: 16px;
+   color: #6c6c6c;
+   line-height: 25px;
+}
+.tab .tab-content h3{
+   font-size: 24px;
+   margin-top: 0;
+}
+@media only screen and (max-width: 479px){
+   .tab .nav-tabs li{
+       width: 100%;
+       margin-bottom: 5px;
+       text-align: center;
+   }
+   .tab .nav-tabs li a span{
+       letter-spacing: 1px;
+       opacity: 1;
+   }
+}
+    </style>
+  </head>
+  
+  <body>
+    <div class="container">
+        <div class="content">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-user"></span> WelCome To 众筹Dapp Handle By CLQ
+                    </button>
+                    <button type="button"style="float:right" class="btn btn-danger" onclick="logout()">Logout</button>
+                    <a><button class="btn btn-primary"  onclick="showModal('_add')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发布众筹</button></a>
+                    <a><button class="btn btn-primary"  onclick="showModal('_all')"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> 查看全部众筹</button></a>
+                    <a><button class="btn btn-primary"  onclick="showModal('_guard')"><span class="	glyphicon glyphicon-envelope" aria-hidden="true"></span> 用户帮助</button></a>
+                </div>  
+                <div class="panel-footer">
+                    <div class="field"><h3>当前账户： <span class="label label-default"><%= users %></span></h3></div>
+                        <div class="jumbotron" style="margin-top: 2%;">
+                             <h1>通知:</h1>
+                             <% for(let i = 0;i<created_fundings.length;i++) { %>
+                                <% let fundingclq = created_fundings[i]; %>
+                                <% if (fundingclq.status == 1){ %>
+                                <div class="alert alert-success alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">
+                                    &times;
+                                    </button>
+                                    <h3>成功！完成了筹钱！</h3>
+                                    <div class="panel-body">
+                                        <div id="content3">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>众筹名称</th>
+                                                        <th>截止时间</th>
+                                                        <th>众筹进度</th>
+                                                        <th>众筹状态</th>
+                                                        <th>众筹退款</th>
+                                                        <th>详情</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% for(let i = 0;i<created_fundings.length;i++) { %>
+                                                        <% let funding = created_fundings[i]; %>
+                                                        <% if (funding.status == 1){ %>
+                                                        <tr>
+                                                        <td><a href="/zhongchoudetail?addr=<%= funding.address %>"><%= funding.name %></a></td>
+                                                        <td><%= funding.endTime %></td>
+                                                        <td><%= funding.present %>/<%= funding.target %></td>
+                                                        <td>
+                                                            <% if (funding.status == 1){ %>
+                                                                已达标
+                                                        </td>
+                                                        <td>
+                                                            不可退款
+                                                        </td>
+                                                        <td>
+                                                            <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')"> 点击详情</button></a>                                         
+                                                        </td>
+                                                            <% } else if(funding.status == 0) { %>
+                                                                未达标
+                                                        </td>
+                                                        <td>
+                                                            不可退款
+                                                        </td>
+                                                        <td>
+                                                            <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')">点击详情</button></a>                                         
+                                                        </td>
+                                                            <% } else { %>
+                                                                已失败
+                                                        </td>
+                                                        <td>
+                                                            <a><button class="btn btn-danger"  onclick="refund('<%= funding.address %>')"><span class="glyphicon glyphicon-minus"
+                                                                        aria-hidden="true"></span> 申请退款</button></a>                                         
+                                                        </td>
+                                                        <td>
+                                                            <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')">点击详情</button></a>                                         
+                                                        </td>
+                                                            <% } %>
+                                                        </tr>
+                                                        <% } %>
+                                                    <% } %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } else if(fundingclq.status == 0) { %>
+                                    <div class="alert alert-warning alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                                aria-hidden="true">
+                                            &times;
+                                        </button>
+                                        <h3>警告！请尽快进行投资或筹款。</h3>
+                                        <div class="panel-body">
+                                            <div id="content3">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>众筹名称</th>
+                                                            <th>截止时间</th>
+                                                            <th>众筹进度</th>
+                                                            <th>众筹状态</th>
+                                                            <th>众筹退款</th>
+                                                            <th>详情</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% for(let i = 0;i<created_fundings.length;i++) { %>
+                                                            <% let funding = created_fundings[i]; %>
+                                                            <% if (funding.status ==0){ %>
+                                                            <tr>
+                                                            <td><a href="/zhongchoudetail?addr=<%= funding.address %>"><%= funding.name %></a></td>
+                                                            <td><%= funding.endTime %></td>
+                                                            <td><%= funding.present %>/<%= funding.target %></td>
+                                                            <td>
+                                                                <% if (funding.status == 1){ %>
+                                                                    已达标
+                                                            </td>
+                                                            <td>
+                                                                不可退款
+                                                            </td>
+                                                            <td>
+                                                                <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')"> 点击详情</button></a>                                         
+                                                            </td>
+                                                                <% } else if(funding.status == 0) { %>
+                                                                    未达标
+                                                            </td>
+                                                            <td>
+                                                                不可退款
+                                                            </td>
+                                                            <td>
+                                                                <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')">点击详情</button></a>                                         
+                                                            </td>
+                                                                <% } else { %>
+                                                                    已失败
+                                                            </td>
+                                                            <td>
+                                                                <a><button class="btn btn-danger"  onclick="refund('<%= funding.address %>')"><span class="glyphicon glyphicon-minus"
+                                                                            aria-hidden="true"></span> 申请退款</button></a>                                         
+                                                            </td>
+                                                            <td>
+                                                                <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')">点击详情</button></a>                                         
+                                                            </td>
+                                                                <% } %>
+                                                            </tr>
+                                                            <% } %>
+                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } else { %>
+                
+                            <div class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">
+                                    &times;
+                                </button>
+                                <h3>错误！请申请退款。</h3>
+                                <div class="panel-body">
+                                    <div id="content3">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>众筹名称</th>
+                                                    <th>截止时间</th>
+                                                    <th>众筹进度</th>
+                                                    <th>众筹状态</th>
+                                                    <th>众筹退款</th>
+                                                    <th>详情</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% for(let i = 0;i<created_fundings.length;i++) { %>
+                                                    <% let funding = created_fundings[i]; %>
+                                                    <% if (funding.status != 1 && funding.status != 0){ %>
+                                                    <tr>
+                                                    <td><a href="/zhongchoudetail?addr=<%= funding.address %>"><%= funding.name %></a></td>
+                                                    <td><%= funding.endTime %></td>
+                                                    <td><%= funding.present %>/<%= funding.target %></td>
+                                                    <td>
+                                                        <% if (funding.status == 1){ %>
+                                                            已达标
+                                                    </td>
+                                                    <td>
+                                                        不可退款
+                                                    </td>
+                                                    <td>
+                                                        <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')"> 点击详情</button></a>                                         
+                                                    </td>
+                                                        <% } else if(funding.status == 0) { %>
+                                                            未达标
+                                                    </td>
+                                                    <td>
+                                                        不可退款
+                                                    </td>
+                                                    <td>
+                                                        <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')">点击详情</button></a>                                         
+                                                    </td>
+                                                        <% } else { %>
+                                                            已失败
+                                                    </td>
+                                                    <td>
+                                                        <a><button class="btn btn-danger"  onclick="refund('<%= funding.address %>')"><span class="glyphicon glyphicon-minus"
+                                                                    aria-hidden="true"></span> 申请退款</button></a>                                         
+                                                    </td>
+                                                    <td>
+                                                        <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')">点击详情</button></a>                                         
+                                                    </td>
+                                                        <% } %>
+                                                    </tr>
+                                                    <% } %>
+                                                <% } %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                            <% } %>
+                        </div>
+                </div>
+            </div>
+            <div id="myCarousel" class="carousel slide">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>   
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                    <div class="item active" onclick="goto1()">
+                        <img src="/images/1.jpg" alt="First slide">
+                    </div>
+                    <div class="item" onclick="goto2()">
+                        <img src="/images/2.jpg" alt="Second slide">
+                    </div>
+                    <div class="item" onclick="goto3()">
+                        <img src="/images/3.jpg" alt="Third slide">
+                    </div>
+                </div>
+                <!-- 轮播（Carousel）导航 -->
+                <a class="carousel-control left" href="#myCarousel" 
+                   data-slide="prev"> <span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="carousel-control right" href="#myCarousel" 
+                   data-slide="next">&rsaquo;</a>
+            </div>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" 
+                            href="#collapseOne">
+                            所有众筹项目
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div id="content1">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>众筹名称</th>
+                                            <th>截止时间</th>
+                                            <th>众筹进度</th>
+                                            <th>众筹状态</th>
+                                            <th>加入众筹</th>
+                                            <th>详情</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for(let i = 0;i<all_fundings.length;i++) { %>
+                                            <% let funding = all_fundings[i]; %>
+                                        <tr>
+                                            <td><a href="/zhongchoudetail?addr=<%= funding.address %>"><%= funding.name %></a></td>
+                                            <td><%= funding.endTime %></td>
+                                            <td><%= funding.present %>/<%= funding.target %></td>
+                                            <td>
+                                                <% if (funding.status == 1){ %>
+                                                    已达标
+                                            </td>
+                                            <td>
+                                                不可加入
+                                            </td>
+                                            <td>
+                                                <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')">点击详情</button></a>                                         
+                                            </td>
+                                                <% } else if(funding.status == 0) { %>
+                                                    未达标
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <div  class = "row" >
+                                                        <div  class = "col-md-6" >
+                                                            <div  class = "input-group" >
+                                                                <span  class = "input-group-btn" ><button  class = "btn btn-default"  type = "button" >-</button ></span>
+                                                                <input  type = "text"  class = "form-control" name="support<%= funding.address %>"  placeholder = "1" >
+                                                                <span  class = "input-group-btn" ><button  class = "btn btn-default"  type = "button" >+</button ></span>
+                                                            </div >
+                                                        </div >
+                                                    </div >
+                                                    <!--<input type="text" name="support<%= funding.address %>" placeholder="输入金额">-->
+                                                    <a>
+                                                        <button class="btn btn-success"  style="margin-top: 2%;" onclick="attendFunding('<%= funding.address %>')">
+                                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 加入众筹</button></a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')">点击详情</button></a>                                         
+                                            </td>
+                                                <% } else { %>
+                                                    已失败
+                                            </td>
+                                            <td>
+                                                不可加入
+                                            </td>
+                                            <td>
+                                                <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')">点击详情</button></a>                                         
+                                            </td>
+                                                <% } %>
+                                            
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" 
+                            href="#collapseOne1">
+                            可以加入的众筹项目
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div id="content4">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>众筹名称</th>
+                                            <th>截止时间</th>
+                                            <th>众筹进度</th>
+                                            <th>众筹状态</th>
+                                            <th>加入众筹</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for(let i = 0;i<all_fundings.length;i++) { %>
+                                            <% let funding = all_fundings[i]; %>
+                                        <tr>
+                                            <% if (funding.status == 0){ %>
+                                            <td><a href="/zhongchoudetail?addr=<%= funding.address %>"><%= funding.name %></a></td>
+                                            <td><%= funding.endTime %></td>
+                                            <td><%= funding.present %>/<%= funding.target %></td>
+                                            <td>
+                                                <% if (funding.status == 1){ %>
+                                                    已达标
+                                            </td>
+                                            <td>
+                                                不可加入
+                                            </td>
+                                                <% } else if(funding.status == 0) { %>
+                                                    未达标
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <div  class = "row" >
+                                                        <div  class = "col-md-6" >
+                                                            <div  class = "input-group" >
+                                                                <span  class = "input-group-btn" ><button  class = "btn btn-default"  type = "button" >-</button ></span>
+                                                                <input  type = "text"  class = "form-control" name="support<%= funding.address %>"  placeholder = "1" >
+                                                                <span  class = "input-group-btn" ><button  class = "btn btn-default"  type = "button" >+</button ></span>
+                                                            </div >
+                                                        </div >
+                                                    </div >
+                                                    <!--<input type="text" name="support<%= funding.address %>" placeholder="输入金额">-->
+                                                    <a>
+                                                        <button class="btn btn-success"  style="margin-top: 2%;" onclick="attendFunding('<%= funding.address %>')">
+                                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 加入众筹</button></a>
+                                                </div>
+                                            </td>
+                                                <% } else { %>
+                                                    已失败
+                                            </td>
+                                            <td>
+                                                不可加入
+                                            </td>
+                                                <% } %>
+                                            <% } %>
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" 
+                            href="#collapseTwo">
+                            参与的众筹项目
+                        </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div id="content2">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>众筹名称</th>
+                                        <th>截止时间</th>
+                                        <th>众筹进度</th>
+                                        <th>众筹状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(let i = 0;i<attended_fundings.length;i++) { %>
+                                        <% let funding = attended_fundings[i]; %>
+                                        <tr>
+                                        <td><%= funding.name %></td>
+                                        <td><%= funding.endTime %></td>
+                                        <td><%= funding.present %>/<%= funding.target %></td>
+                                        <td>
+                                            <% if (funding.status == 1){ %>
+                                                已达标
+                                            <% } else if(funding.status == 0) { %>
+                                                未达标
+                                            <% } else { %>
+                                                已失败
+                                            <% } %>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" 
+                            href="#collapseThree">
+                            我的众筹
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div id="content3">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>众筹名称</th>
+                                            <th>截止时间</th>
+                                            <th>众筹进度</th>
+                                            <th>众筹状态</th>
+                                            <th>众筹退款</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for(let i = 0;i<created_fundings.length;i++) { %>
+                                            <% let funding = created_fundings[i]; %>
+                                            <tr>
+                                            <td><%= funding.name %></td>
+                                            <td><%= funding.endTime %></td>
+                                            <td><%= funding.present %>/<%= funding.target %></td>
+                                            <td>
+                                                <% if (funding.status == 1){ %>
+                                                    已达标
+                                            </td>
+                                            <td>
+                                                不可退款
+                                            </td>
+                                                <% } else if(funding.status == 0) { %>
+                                                    未达标
+                                            </td>
+                                            <td>
+                                                不可退款
+                                            </td>
+                                                <% } else { %>
+                                                    已失败
+                                            </td>
+                                            <td>
+                                                <a><button class="btn btn-danger"  onclick="refund('<%= funding.address %>')"><span class="glyphicon glyphicon-minus"
+                                                            aria-hidden="true"></span> 申请退款</button></a>                                         
+                                            </td>
+                                                <% } %>
+                                            </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                        <input id="tab1" type="checkbox" name="tabs" style="display: none;"  checked>
+                        <label for="tab1"><span  aria-hidden="true"></span> 推荐众筹项目</label>
+                        
+                        <input id="tab2" type="checkbox" name="tabs"style="display: none;">
+                        <label for="tab2"><span  aria-hidden="true"></span> 个人信息</label>
+                        
+                        <input id="tab3" type="checkbox" name="tabs"style="display: none;">
+                        <label for="tab3"><span  aria-hidden="true"></span>余额信息</label>
+                        
+                        <section id="content1">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>众筹ID</th>
+                                        <th>众筹名称</th>
+                                        <th>项目介绍</th>
+                                        <th>众筹时间</th>
+                                        <th>当前进度</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>3180102634</td>
+                                            <td>吃个饭呗</td>
+                                            <td>今日晚饭钱</td>
+                                            <td>2021-1-11 16:10:04-2021-1-11 18:10:04</td>
+                                            <td>
+                                                <span class="label label-default">当前进度</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" 
+                                                        aria-valuemin="0" aria-valuemax="100" style="width: 93%;">
+                                                        <span class="sr-only">93% 完成</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3180102635</td>
+                                            <td>买东西呗</td>
+                                            <td>本月生活费</td>
+                                            <td>2021-1-11 00:00:00-2021-2-11 18:30:00</td>
+                                            <td>
+                                                <span class="label label-default">当前进度</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" 
+                                                        aria-valuemin="0" aria-valuemax="100" style="width: 53%;">
+                                                        <span class="sr-only">53% 完成</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3180102636</td>
+                                            <td>其实就缺钱</td>
+                                            <td>永久性需要Money</td>
+                                            <td>2021-1-12 00:00:00~</td>
+                                            <td>
+                                                <span class="label label-default">当前进度</span>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" 
+                                                        aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
+                                                        <span class="sr-only">05% 完成</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table> 
+                            <ul class="pagination">
+                                <li><a href="#">&laquo;</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li class="disabled"><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">&raquo;</a></li>
+                            </ul>      
+                        </section>
+                            
+                        <section id="content2">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>账号地址</th>
+                                        <th>所有人</th>
+                                        <th>账号状态</th>
+                                        <th>联系方式</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                        <td><%= users %></td>
+                                        <td>程礼棋</td>
+                                        <td>Active</td>
+                                        <td>15368106670</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                            
+                        <section id="content3">
+                            <table class="table table-hover">
+                                <tbody>
+                                    <div class="field"><h3>当前账户余额： <span class="label label-default"><%= balance %></span></h3></div>
+                                </tbody>
+                            </table>
+                        </section>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        发布众筹
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group" style="margin-top: 2%;">
+                        <span class="input-group-addon">名称</span>
+                        <input type="text" name="fundingNameAdd" class="form-control" placeholder="众筹名称">
+                    </div>
+                    <div class="input-group" style="margin-top: 2%;">
+                        <span class="input-group-addon">ETH</span>
+                        <input type="text" name="targetMoney" class="form-control" placeholder="众筹金额">
+                    </div>
+                    <div class="input-group" style="margin-top: 2%;">
+                        <span class="input-group-addon">开始时间</span>
+                        <input type="text" name="startTime" class="form-control" placeholder="默认当前">
+                    </div>                  
+                    <div class="input-group" style="margin-top: 2%;">
+                        <span class="input-group-addon">截止时间</span>
+                        <input type="text" name="duration" class="form-control" placeholder="秒">
+                    </div> 
+                    <div class="input-group" style="margin-top: 2%;">
+                        <span class="input-group-addon">项目介绍</span>
+                        <input type="text" name="introduce" class="form-control" placeholder="项目介绍无">
+                    </div>
+                    <div class="checkbox" style="font-size: 17px;">
+                        <label><input type="checkbox">核实信息后确认打勾</label>
+                    </div>
+                    <div class="active section"> <a href=" https://github.com/liamclq/">发布众筹指南及须知</a></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="createFunding()">
+                        提交
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_all" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        所有众筹
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div id="content1">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>众筹名称</th>
+                                            <th>截止时间</th>
+                                            <th>众筹进度</th>
+                                            <th>众筹状态</th>
+                                            <th>加入众筹</th>
+                                            <th>详情</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for(let i = 0;i<all_fundings.length;i++) { %>
+                                            <% let funding = all_fundings[i]; %>
+                                        <tr>
+                                            <td><a href="/zhongchoudetail?addr=<%= funding.address %>"><%= funding.name %></a></td>
+                                            <td><%= funding.endTime %></td>
+                                            <td><%= funding.present %>/<%= funding.target %></td>
+                                            <td>
+                                                <% if (funding.status == 1){ %>
+                                                    已达标
+                                            </td>
+                                            <td>
+                                                不可加入
+                                            </td>
+                                            <td>
+                                                <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')">点击详情</button></a>                                         
+                                            </td>
+                                                <% } else if(funding.status == 0) { %>
+                                                    未达标
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <div  class = "row" >
+                                                        <div  class = "col-md-6" >
+                                                            <div  class = "input-group" >
+                                                                <span  class = "input-group-btn" ><button  class = "btn btn-default"  type = "button" >-</button ></span>
+                                                                <input  type = "text"  class = "form-control" name="support<%= funding.address %>"  placeholder = "1" >
+                                                                <span  class = "input-group-btn" ><button  class = "btn btn-default"  type = "button" >+</button ></span>
+                                                            </div >
+                                                        </div >
+                                                    </div >
+                                                    <!--<input type="text" name="support<%= funding.address %>" placeholder="输入金额">-->
+                                                    <a>
+                                                        <button class="btn btn-success"  style="margin-top: 2%;" onclick="attendFunding('<%= funding.address %>')">
+                                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 加入众筹</button></a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')">点击详情</button></a>                                         
+                                            </td>
+                                                <% } else { %>
+                                                    已失败
+                                            </td>
+                                            <td>
+                                                不可加入
+                                            </td>
+                                            <td>
+                                                <a><button class="btn btn-default"  onclick="gotoindex('<%= funding.address %>')">点击详情</button></a>                                         
+                                            </td>
+                                                <% } %>
+                                            
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>       
+                        <ul class="pagination">
+                            <li><a href="#">&laquo;</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li class="disabled"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>       
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_guard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        用户帮助手册
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="active section"> <a href=" https://github.com/liamclq/">发布众筹指南及须知</a></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
+
+<script>
+    /**
+     * @param userName 用户名
+     * @param password 用户密码
+     * @return 登陆成功返回用户ID，登陆失败返回null
+     * @throws SQLException
+     */
+    function showModal(id) {
+		$('#'+'modal'+id).modal('show');
+	}        
+    function createFunding(){
+        $.ajax({
+        dataType: "json",
+        type: "post",
+        url: "/createFunding",
+        data: {
+            name: $("input[name='fundingNameAdd']").val(),
+            target: $("input[name='targetMoney']").val(),
+            duration: $("input[name='duration']").val(),
+        },
+        success: (data) => {
+            if (data.status == 1) {
+            alert("发布众筹成功！");
+            window.location.reload();
+            } else alert(data.msg);
+        },
+        error: (err) => {
+            alert("与服务器连接异常，请稍后再试!");
+        },
+        });
+    }
+    function attendFunding(addr){
+        console.log(addr);
+        $.ajax({
+            dataType: "json",
+            type: "post",
+            url: "/attendFunding",
+            data: {
+                address: addr,
+                money: $("input[name='support"+addr +"']").val()
+            },
+            success: (data) => {
+                if (data.status == 1) {
+                alert("加入成功！");
+                window.location.reload();
+                } else{
+                alert("加入失败！");
+                console.log(data.msg);
+                }
+            },
+            error: (err) => {
+                alert("与服务器连接异常，请稍后再试!");
+            },
+        });
+    }
+    function refund(addr){
+        console.log(addr);
+        $.ajax({
+            dataType: "json",
+            type: "post",
+            url: "/refund",
+            data: {
+                address: addr
+            },
+            success: (data) => {
+                if (data.status == 1) {
+                    alert("退款成功！");
+                    window.location.reload();
+                } else{
+                    alert("退款失败！");
+                    console.log(data.msg);
+                }
+            },
+            error: (err) => {
+                alert("与服务器连接异常，请稍后再试!");
+            },
+        });
+    }
+    function logout(){
+        window.location.href = "/loginin";
+    }
+    function goto1(){
+        window.location.href = "https://izhongchou.taobao.com/dreamdetail.htm?spm=a215p.1596646.0.0.107f47dbJZfRMD&id=20095870";
+    }
+    function goto2(){
+        window.location.href = "https://izhongchou.taobao.com/dreamdetail.htm?spm=a215p.1596646.0.0.107f47dbJZfRMD&id=20096028";
+    }
+    function goto3(){
+        window.location.href = "https://izhongchou.taobao.com/dreamdetail.htm?spm=a215p.1596646.0.0.107f47dbJZfRMD&id=20095655";
+    }
+    function gotoindex(addr){
+        window.location.href ="/zhongchoudetail?addr="+addr;
+    }
+</script>

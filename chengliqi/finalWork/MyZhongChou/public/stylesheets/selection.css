@@ -1,0 +1,12 @@
+.selection_block
+{
+    border:1px solid #dddddd;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+    margin-top: 40px;
+}
+.myselection
+{
+    margin-top: 100px
+}

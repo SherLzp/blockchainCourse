@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ZhongChouDApp</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/semantic.css" />
+  <link rel='stylesheet' href="/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/stylesheets/activity.css"/>
+  <link rel='stylesheet' href="/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/stylesheets/activity.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"> 
+  <link rel="shortcut icon" href="#"/>
+  <style>
+    body {
+      background: url(images/bgm.png) no-repeat center center;
+      background-size: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ui basic segment" align="center">
+    <div class="ui message " style="width: 50%; height: 80px; font-size: 17px; border-radius:10px; opacity: 0.8">
+      <div class="header">区块链与数字货币 浙江大学 程礼棋 FINALWORK </div>
+      <ul class="list">
+        <div class="ui breadcrumb">
+          <a class="section">By:程礼棋 3180102634</a>
+          <div class="divider"> / </div>
+          <div class="active section">github主页link: <a href=" https://github.com/liamclq/">liamclq</a></div>
+        </div>
+      </ul>
+    </div>
+    <div align="center" style="margin-top: 2%;">
+      <img src="/images/profile.png">
+    </div>
+    <div align="center" style="margin-top: 4%; width: 500px;">
+      <div class="ui floating dropdown labeled search icon button">
+        <input type="hidden" name="user">
+        <i class="dropdown icon"></i>
+        <div class="default text">选择登陆的MetaMask钱包Address</div>
+        <div class="menu">
+          <% for (let i = 0; i < users.length; i++) { %>
+          <div class="item" data-value="<%= i %>">
+            <img class="ui mini avatar image" src="/images/metamask.png">
+            <%= users[i] %>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div align="center" style="margin-top: 3%; width: 500px;">
+      <div class="ui labeled input" >
+        <div class="ui label">密码: </div>
+        <input type="text" placeholder="MetaMask密码">
+      </div>
+    </div>
+    <div style="margin-top: 3%;">
+      <button class="ui labeled icon button" style="width: 10%; height: 42px; font-size: 17px; border-radius:10px; opacity: 0.8" onclick="login()"><i class="left arrow icon"></i> 登录</button>
+      <button class="ui right labeled icon button" style="width: 10%; height: 42px; font-size: 17px; border-radius:10px; opacity: 0.8" onclick="zhuce()"><i class="right arrow icon"></i>注册 </button>
+    </div>
+  </div>
+</body>
+
+<script src="/Semantic-UI-master/jquery.js"></script>
+<script src="/Semantic-UI-master/semantic.min.js"></script>
+<script>
+  /**
+     * @param userName 用户名
+     * @param password 用户密码
+     * @return 登陆成功返回用户ID，登陆失败返回null
+     * @throws SQLException
+     */
+  var index = -1;
+  $('.ui.dropdown').dropdown({
+    onChange: function (value, text, $selectedItem) {
+      index = value;
+    }
+  });
+  function login() {
+    if (index < 0) {
+      alert("请先登录账户或注册");
+      return;
+    }
+    $.ajax({
+      dataType: "json",
+      type: "post",
+      url: "/loginin",
+      data: {
+        index: index
+      },
+      success: (data) => {
+        if (data.status == 1) {
+          alert("登陆成功！");
+          window.location.href = "/Home";
+        } else alert(data.msg);
+      },
+      error: (err) => {
+        alert("与服务器连接异常，请稍后再试!");
+      }
+    });
+  }
+  function zhuce() {
+    /*$.ajax({
+      dataType: "json",
+      type: "post",
+      url: "/loginin",
+      data: {
+        index: index
+      },
+      success: (data) => {
+        if (data.status == 1) {
+          alert("登陆成功！");
+          window.location.href = "/Home";
+        } else alert(data.msg);
+      },
+      error: (err) => {
+        alert("与服务器连接异常，请稍后再试!");
+      }
+    });*/
+    window.location.href = "https://metamask.io/";
+  }
+
+</script>
+
+</html>
