@@ -1,0 +1,28 @@
+.pxIndexPageTopBar{
+    width:100%;
+    height:50px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.pxIndexPageTopBarLandR{
+    width:40%;
+    height:auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 40px;
+    align-items: center;
+}
+.pxIndexPageTopBarPhone{
+    width:70%;
+    height:auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 60px;
+    font-size: 0.8rem;
+}
