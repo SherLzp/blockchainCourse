@@ -1,0 +1,75 @@
+
+.gridCommon {
+  border: 1px solid #d3d3d3;
+  margin: 0px;
+  padding: 20px;
+  background-color: white;
+  font-size: 14px;
+}
+
+.marginCommon {
+  margin: 10px 0;
+}
+
+.paddingCommon {
+  padding: 20px;
+}
+
+.handCursor {
+  cursor: pointer;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.normalFont {
+  font-size: 14px;
+}
+
+.bigFont {
+  font-size: 16px;
+}
+
+.smallFont {
+  font-size: 13px;
+}
+
+.unimportantFontColor {
+  color: #737373;
+}
+
+.stressFontColor {
+  color: #0faaaa;
+  cursor: pointer;
+}
+
+.stressFontColor :active {
+  color: #2bcece;
+}
+
+.stressBackColor {
+  background-color: #0bc0c0;
+}
+
+.stressBackColor :active {
+  background-color: #057c7c;
+}
+
+
+.commonButton {
+  padding: 5px 10px;
+  border: 1px solid;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #00bdbd;
+  border-color: #00bdbd;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+}
+
+.commonButton:active {
+  color: #000000;
+  border-color: #000000;
+}
+
