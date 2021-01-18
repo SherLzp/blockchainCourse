@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="/bootstrap/css/semantic.css" />
+  <style>
+    body {
+      background-size: cover;
+      background-attachment: fixed;
+      background-color: #d2e7f0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content" align="center">
+    <div align="center" style="margin-top: 15%;">
+      <h1>Login to your account</h1>
+    </div>
+    <div align="center" style="margin-top: 4%; width: 400px;">
+      <div class="ui fluid selection dropdown">
+        <input type="hidden" name="user">
+        <i class="dropdown icon"></i>
+        <div class="default text">选择一个账号登录</div>
+        <div class="menu">
+          <% for (let i = 0; i < users.length; i++) { %>
+          <div class="item" data-value="<%= i %>">
+            <%= users[i] %>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 5%;">
+      <button class="ui button" style="background-color:rgb(61, 126, 248);color:white; width: 20%; height: 42px; 
+      font-size: 17px;letter-spacing:10px;" onclick="login()">登录
+      </button>
+    </div>
+  </div>
+</body>
+
+<script src="/bootstrap/js/jquery.js"></script>
+<script src="/bootstrap/js/semantic.min.js"></script>
+<script>
+  var index = -1;
+  $('.ui.dropdown').dropdown({
+    onChange: function (value, text, $selectedItem) {
+      index = value;
+    }
+  });
+  function login() {
+    if (index < 0) {
+      alert("请先选择一个账户！");
+      return;
+    }
+    $.ajax({
+      dataType: "json",
+      type: "post",
+      url: "/login",
+      data: {
+        index: index
+      },
+      success: (data) => {
+        if (data.status == 1) {
+          alert("登录成功！");
+          window.location.href = "/fundings";
+        } else alert(data.msg);
+      },
+      error: (err) => {
+        alert("与服务器连接异常，请稍后再试!");
+      }
+    });
+  }
+
+</script>
+
+</html>
