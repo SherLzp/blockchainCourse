@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\dapp",
+    "\\dapp\\src",
+    "\\dapp\\src\\display",
+    "\\dapp\\src\\eth",
+    "\\dapp\\src\\utils",
+    "\\migrations"
+  ],
+  "SelectedNode": "\\dapp\\src\\eth\\fundingCompanyInstance.js",
+  "PreviewInSolutionExplorer": false
+}
