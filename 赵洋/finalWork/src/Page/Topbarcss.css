@@ -1,0 +1,54 @@
+.header{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: nowrap;
+    height: 64px;
+    align-items: center;
+    box-shadow: 0px 0px 6px #888888;
+    position: relative;
+    z-index: 999;
+    background-color: #ffffff;
+    padding-right: 15px;
+}
+
+.logo{
+    width: 50px;
+    height: 50px;
+    margin-left: 2%;
+    margin-right: 10px;
+}
+
+.title{
+    font-size: x-large;
+    margin-left: 2px;
+    margin-right: 30px;
+    white-space:nowrap;
+}
+
+.lay{
+    margin-top:20px;
+    margin-left: 175px;
+    margin-right: 175px;
+    background-color: #ffffff;
+    -webkit-box-shadow:0 3px 3px #c8c8c8 ;
+    -moz-box-shadow:0 3px 3px #c8c8c8 ;
+    box-shadow:0 3px 3px #c8c8c8 ;
+    padding: 10px;
+}
+.money{
+    background-color: rgba(223, 223, 223, 0.78);
+    margin-top: 20px;
+    padding:20px;
+    margin-bottom: 20px;
+}
+.greybox{
+    border: 20px;
+    padding: 60px;
+}
+.center{
+    text-align: center;
+}
