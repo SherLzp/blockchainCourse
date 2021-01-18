@@ -1,0 +1,60 @@
+.myfunds{
+
+    .funds{
+        display: flex;
+        flex-direction: column;
+        
+        .fund{
+            margin: 5px 5px 5px 5px;
+            width: 500px;
+            background-color: crimson;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular';
+            
+            .fund-info{
+                display: flex;
+                flex-direction: row;
+                margin: auto;
+
+                .infos{
+                    margin: auto;
+                }
+
+                .btn-show-req{
+                    width: 100px;
+                    margin: 5px 5px 5px 30px;
+                }
+            }
+
+            .reqs{
+                margin: 5px 5px 5px 5px;
+                background-color: aqua;
+                display: flex;
+                flex-direction: column;
+
+                .req{
+                    margin: 5px 5px 5px 5px;
+                    background-color: coral;
+                    display: flex;
+                    flex-direction: row;
+                    font-size: 20px;
+                    font-family: 'Lucida Sans', 'Lucida Sans Regular';
+                    
+                    .info{
+                        display: flex;
+                        flex-direction: column;
+                        margin: auto;
+                    }
+
+                    .btn-agree{
+                        margin: auto;
+                    }
+                    .passed{
+                        margin: auto;
+                    }
+                }
+            }
+        }
+    }
+}

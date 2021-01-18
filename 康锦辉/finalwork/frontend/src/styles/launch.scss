@@ -1,0 +1,39 @@
+.launch{
+    background-color: rgb(43, 219, 196);
+    width: 400px;
+    height: 200px;
+    margin: 10px 10px 10px 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .need{
+        font-size: 20px;
+        // display: flex;
+        // flex-direction: row;
+        margin: auto;
+        .num-input{
+            //height: 20px;
+            // margin: 10px 10px 0px 10px;
+            // margin: auto;
+        }
+    }
+
+    .ddl{
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        .input{
+            height: 20px;
+            margin: 10px 10px 0px 10px;
+        }
+    }
+
+    
+
+    .button{
+        margin: 10px 10px 10px 10px;
+    }
+}

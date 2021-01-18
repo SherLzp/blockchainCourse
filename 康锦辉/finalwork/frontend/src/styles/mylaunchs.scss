@@ -1,0 +1,36 @@
+.mylaunchs{
+
+    .launchs{
+        display: flex;
+        flex-direction: column;
+        
+        .launch{
+            margin: 5px 5px 5px 5px;
+            width: 600px;
+            height: auto;
+            background-color: crimson;
+            display: flex;
+            flex-direction: row;
+            font-size: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular';
+
+            .info{
+                display: flex;
+                flex-direction: column;
+                margin: auto;
+                //background-color: aqua;
+            }
+
+            .req{
+                display: flex;
+                flex-direction: column;
+                margin: auto;
+                .btn-req{
+                    //width: 100px;
+                    //height: 50%;
+                    margin: auto;
+                }
+            }
+        }
+    }
+}

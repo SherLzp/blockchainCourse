@@ -1,0 +1,41 @@
+.view{
+    .products{
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular';
+
+        .product{
+            margin: 5px 5px 5px 5px;
+            width: 600px;
+            background: crimson;
+            display: flex;
+            flex-direction: row;
+
+            .info{
+                // margin: 5px 5px 5px 5px;
+                margin: auto;
+            }
+            
+
+            .vote{
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+                align-items: center;
+                // margin: 5px 5px 5px 10px;
+                margin: auto;
+
+                .btn-vote{
+                    width: 50px;
+                    margin: 5px 5px 5px 5px;
+                }
+    
+                .number-input{
+                    //width: 50px;
+                    margin: 5px 5px 5px 5px;
+                }
+            }
+        }
+    }
+}
