@@ -1,0 +1,957 @@
+{
+  "contractName": "relatedFundings",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "name": "funding",
+          "type": "address"
+        }
+      ],
+      "name": "setFunding",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "getFunding",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.24+commit.e67f0147\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"},{\"name\":\"funding\",\"type\":\"address\"}],\"name\":\"setFunding\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getFunding\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/D/documents/3/\\u533a\\u5757\\u94fe/\\u4f17\\u7b79/dapp/solidity/contracts/relatedFunding.sol\":\"relatedFundings\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/D/documents/3/\\u533a\\u5757\\u94fe/\\u4f17\\u7b79/dapp/solidity/contracts/relatedFunding.sol\":{\"keccak256\":\"0xeb36d6c9d9522ef68dd4e6cb1eb5919a58fe7ffaf73f7fc3fa4f910675fbd856\",\"urls\":[\"bzzr://83c835695d9a68ee1f33a13351b948247c2f38d119786f1708fe0378bcc64e31\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506102ea806100206000396000f30060806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630b59d31914610051578063ad0a4f32146100b4575b600080fd5b34801561005d57600080fd5b506100b2600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061014c565b005b3480156100c057600080fd5b506100f5600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506101f2565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b8381101561013857808201518184015260208101905061011d565b505050509050019250505060405180910390f35b6000808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000208190806001815401808255809150509060018203906000526020600020016000909192909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505050565b60606000808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000208054806020026020016040519081016040528092919081815260200182805480156102b257602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019060010190808311610268575b505050505090509190505600a165627a7a723058209b539d6ba2284d368878a192ba7292a814a932ecf38396af729cd8444cdadd1a0029",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630b59d31914610051578063ad0a4f32146100b4575b600080fd5b34801561005d57600080fd5b506100b2600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061014c565b005b3480156100c057600080fd5b506100f5600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506101f2565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b8381101561013857808201518184015260208101905061011d565b505050509050019250505060405180910390f35b6000808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000208190806001815401808255809150509060018203906000526020600020016000909192909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505050565b60606000808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000208054806020026020016040519081016040528092919081815260200182805480156102b257602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019060010190808311610268575b505050505090509190505600a165627a7a723058209b539d6ba2284d368878a192ba7292a814a932ecf38396af729cd8444cdadd1a0029",
+  "sourceMap": "73:301:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;73:301:3;;;;;;;",
+  "deployedSourceMap": "73:301:3:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;149:104;;8:9:-1;5:2;;;30:1;27;20:12;5:2;149:104:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;259:112;;8:9:-1;5:2;;;30:1;27;20:12;5:2;259:112:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;259:112:3;;;;;;;;;;;;;;;;;149:104;217:8;:14;226:4;217:14;;;;;;;;;;;;;;;237:7;217:28;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;217:28:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;149:104;;:::o;259:112::-;312:10;349:8;:14;358:4;349:14;;;;;;;;;;;;;;;342:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;259:112;;;:::o",
+  "source": "pragma solidity 0.4.24;\r\n\r\n//与某个用户相关的所有众筹项目\r\ncontract relatedFundings{\r\n    mapping(address => address[]) Fundings;\r\n    function setFunding(address user,address funding) public {\r\n        Fundings[user].push(funding);\r\n    }\r\n    function getFunding(address user)public view returns(address [] memory ){\r\n        return Fundings[user];\r\n    }\r\n}",
+  "sourcePath": "D:\\documents\\3\\区块链\\众筹\\dapp\\solidity\\contracts\\relatedFunding.sol",
+  "ast": {
+    "absolutePath": "/D/documents/3/区块链/众筹/dapp/solidity/contracts/relatedFunding.sol",
+    "exportedSymbols": {
+      "relatedFundings": [
+        794
+      ]
+    },
+    "id": 795,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 760,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 794,
+        "linearizedBaseContracts": [
+          794
+        ],
+        "name": "relatedFundings",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 765,
+            "name": "Fundings",
+            "nodeType": "VariableDeclaration",
+            "scope": 794,
+            "src": "104:38:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
+              "typeString": "mapping(address => address[])"
+            },
+            "typeName": {
+              "id": 764,
+              "keyType": {
+                "id": 761,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "112:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "104:29:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
+                "typeString": "mapping(address => address[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "id": 762,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "123:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "id": 763,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "123:9:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                  "typeString": "address[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 779,
+              "nodeType": "Block",
+              "src": "206:47:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 776,
+                        "name": "funding",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 769,
+                        "src": "237:7:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 772,
+                          "name": "Fundings",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 765,
+                          "src": "217:8:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
+                            "typeString": "mapping(address => address[] storage ref)"
+                          }
+                        },
+                        "id": 774,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 773,
+                          "name": "user",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 767,
+                          "src": "226:4:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "217:14:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 775,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "217:19:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_address_$returns$_t_uint256_$",
+                        "typeString": "function (address) returns (uint256)"
+                      }
+                    },
+                    "id": 777,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "217:28:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 778,
+                  "nodeType": "ExpressionStatement",
+                  "src": "217:28:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 780,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setFunding",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 770,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 767,
+                  "name": "user",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 780,
+                  "src": "169:12:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 766,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "169:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 769,
+                  "name": "funding",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 780,
+                  "src": "182:15:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 768,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "182:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "168:30:3"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 771,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "206:0:3"
+            },
+            "scope": 794,
+            "src": "149:104:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 792,
+              "nodeType": "Block",
+              "src": "331:40:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 788,
+                      "name": "Fundings",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 765,
+                      "src": "349:8:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
+                        "typeString": "mapping(address => address[] storage ref)"
+                      }
+                    },
+                    "id": 790,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 789,
+                      "name": "user",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 782,
+                      "src": "358:4:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "349:14:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                      "typeString": "address[] storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 787,
+                  "id": 791,
+                  "nodeType": "Return",
+                  "src": "342:21:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 793,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getFunding",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 783,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 782,
+                  "name": "user",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 793,
+                  "src": "279:12:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 781,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "279:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "278:14:3"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 787,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 786,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 793,
+                  "src": "312:10:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 784,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "312:7:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 785,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "312:10:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "311:20:3"
+            },
+            "scope": 794,
+            "src": "259:112:3",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 795,
+        "src": "73:301:3"
+      }
+    ],
+    "src": "0:374:3"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/D/documents/3/区块链/众筹/dapp/solidity/contracts/relatedFunding.sol",
+      "exportedSymbols": {
+        "relatedFundings": [
+          794
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 760,
+        "name": "PragmaDirective",
+        "src": "0:23:3"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            794
+          ],
+          "name": "relatedFundings",
+          "scope": 795
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "Fundings",
+              "scope": 794,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(address => address[])",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(address => address[])"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "type": "address"
+                    },
+                    "id": 761,
+                    "name": "ElementaryTypeName",
+                    "src": "112:7:3"
+                  },
+                  {
+                    "attributes": {
+                      "length": null,
+                      "type": "address[]"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 762,
+                        "name": "ElementaryTypeName",
+                        "src": "123:7:3"
+                      }
+                    ],
+                    "id": 763,
+                    "name": "ArrayTypeName",
+                    "src": "123:9:3"
+                  }
+                ],
+                "id": 764,
+                "name": "Mapping",
+                "src": "104:29:3"
+              }
+            ],
+            "id": 765,
+            "name": "VariableDeclaration",
+            "src": "104:38:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "setFunding",
+              "payable": false,
+              "scope": 794,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "user",
+                      "scope": 780,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 766,
+                        "name": "ElementaryTypeName",
+                        "src": "169:7:3"
+                      }
+                    ],
+                    "id": 767,
+                    "name": "VariableDeclaration",
+                    "src": "169:12:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "funding",
+                      "scope": 780,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 768,
+                        "name": "ElementaryTypeName",
+                        "src": "182:7:3"
+                      }
+                    ],
+                    "id": 769,
+                    "name": "VariableDeclaration",
+                    "src": "182:15:3"
+                  }
+                ],
+                "id": 770,
+                "name": "ParameterList",
+                "src": "168:30:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 771,
+                "name": "ParameterList",
+                "src": "206:0:3"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "push",
+                              "referencedDeclaration": null,
+                              "type": "function (address) returns (uint256)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "address[] storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 765,
+                                      "type": "mapping(address => address[] storage ref)",
+                                      "value": "Fundings"
+                                    },
+                                    "id": 772,
+                                    "name": "Identifier",
+                                    "src": "217:8:3"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 767,
+                                      "type": "address",
+                                      "value": "user"
+                                    },
+                                    "id": 773,
+                                    "name": "Identifier",
+                                    "src": "226:4:3"
+                                  }
+                                ],
+                                "id": 774,
+                                "name": "IndexAccess",
+                                "src": "217:14:3"
+                              }
+                            ],
+                            "id": 775,
+                            "name": "MemberAccess",
+                            "src": "217:19:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 769,
+                              "type": "address",
+                              "value": "funding"
+                            },
+                            "id": 776,
+                            "name": "Identifier",
+                            "src": "237:7:3"
+                          }
+                        ],
+                        "id": 777,
+                        "name": "FunctionCall",
+                        "src": "217:28:3"
+                      }
+                    ],
+                    "id": 778,
+                    "name": "ExpressionStatement",
+                    "src": "217:28:3"
+                  }
+                ],
+                "id": 779,
+                "name": "Block",
+                "src": "206:47:3"
+              }
+            ],
+            "id": 780,
+            "name": "FunctionDefinition",
+            "src": "149:104:3"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "getFunding",
+              "payable": false,
+              "scope": 794,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "user",
+                      "scope": 793,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 781,
+                        "name": "ElementaryTypeName",
+                        "src": "279:7:3"
+                      }
+                    ],
+                    "id": 782,
+                    "name": "VariableDeclaration",
+                    "src": "279:12:3"
+                  }
+                ],
+                "id": 783,
+                "name": "ParameterList",
+                "src": "278:14:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 793,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "address[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "type": "address"
+                            },
+                            "id": 784,
+                            "name": "ElementaryTypeName",
+                            "src": "312:7:3"
+                          }
+                        ],
+                        "id": 785,
+                        "name": "ArrayTypeName",
+                        "src": "312:10:3"
+                      }
+                    ],
+                    "id": 786,
+                    "name": "VariableDeclaration",
+                    "src": "312:10:3"
+                  }
+                ],
+                "id": 787,
+                "name": "ParameterList",
+                "src": "311:20:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 787
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "address[] storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 765,
+                              "type": "mapping(address => address[] storage ref)",
+                              "value": "Fundings"
+                            },
+                            "id": 788,
+                            "name": "Identifier",
+                            "src": "349:8:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 782,
+                              "type": "address",
+                              "value": "user"
+                            },
+                            "id": 789,
+                            "name": "Identifier",
+                            "src": "358:4:3"
+                          }
+                        ],
+                        "id": 790,
+                        "name": "IndexAccess",
+                        "src": "349:14:3"
+                      }
+                    ],
+                    "id": 791,
+                    "name": "Return",
+                    "src": "342:21:3"
+                  }
+                ],
+                "id": 792,
+                "name": "Block",
+                "src": "331:40:3"
+              }
+            ],
+            "id": 793,
+            "name": "FunctionDefinition",
+            "src": "259:112:3"
+          }
+        ],
+        "id": 794,
+        "name": "ContractDefinition",
+        "src": "73:301:3"
+      }
+    ],
+    "id": 795,
+    "name": "SourceUnit",
+    "src": "0:374:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-01-04T08:36:45.715Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

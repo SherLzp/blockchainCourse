@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>登录 | FundingSystem</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/semantic.css" />
+  <style>
+    body {
+      background: url(images/b7.jpg) no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      background-color: #CCCCCC;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ui basic segment" align="center">
+    <div align="center" style="margin-top: 10%;">
+      <img src="/images/login.png">
+    </div>
+    <div align="center" style="margin-top: 4%; width: 500px;">
+      <div class="ui fluid selection dropdown">
+        <input type="hidden" name="user">
+        <i class="dropdown icon"></i>
+        <div class="default text">选择登陆的用户</div>
+        <div class="menu">
+          <% for (let i = 0; i < users.length; i++) { %>
+          <div class="item" data-value="<%= i %>">
+            <img class="ui mini avatar image" src="/images/avatar.png">
+            <%= users[i] %>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 5%;">
+      <button class="positive ui button"
+        style="width: 10%; height: 42px; font-size: 17px; border-radius:10px; opacity: 0.8" onclick="login()">登
+        录</button>
+    </div>
+  </div>
+</body>
+
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/semantic.min.js"></script>
+<script>
+  var index = -1;
+  $('.ui.dropdown').dropdown({
+    onChange: function (value, text, $selectedItem) {
+      index = value;
+    }
+  });
+  function login() {
+    if (index < 0) {
+      alert("请先选择一个账户！");
+      return;
+    }
+    $.ajax({
+      dataType: "json",
+      type: "post",
+      url: "/login",
+      data: {
+        index: index
+      },
+      success: (data) => {
+        if (data.status == 1) {
+          alert("登陆成功！");
+          window.location.href = "/all_fundings";
+        } else alert(data.msg);
+      },
+      error: (err) => {
+        alert("与服务器连接异常，请稍后再试!");
+      }
+    });
+  }
+
+</script>
+
+</html>

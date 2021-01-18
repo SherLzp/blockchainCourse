@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/main.css"/>
+    <link rel='stylesheet' href="/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/stylesheets/intro.css"/>
+    <script src="/jquery/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/javascripts/intro.js"></script>
+    
+    <style>
+      body{
+        background-color: aliceblue;    
+      }
+      h3{
+          text-align: center;
+          margin-bottom: 25px;
+      }
+    </style>
+  </head>
+  
+    <body>
+        
+        <div class="container">
+            <div class="myintro">
+                <div class="col-md-offset-1 col-md-10">
+                    <div class="intro_block">
+                        <h3 style="text-align:center"> <span class="glyphicon glyphicon-th-list"></span> 众筹详情</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div style="padding-left:50px;">
+                                    <div>
+                                        <h4><b>基本信息</b></h4>
+                                    </div>
+                                    <div>
+                                        <p><b>发起人：</b><%= funding.creator %></p>
+                                    </div>
+                                    <div>
+                                        <p><b>众筹名称：</b><%= funding.name %></p>
+                                    </div>
+                                    <div>
+                                        <p><b>截止时间：</b><%= funding.endTime %></p>
+                                    </div>
+                                    <div>
+                                        <p><b>众筹进度：</b><%= funding.present %>/<%= funding.target %></p>
+                                    </div>
+                                    <div>
+                                        <p><b>众筹状态：</b>
+                                        <% if(funding.status == 1 ){ %>
+                                            已达标
+                                        <% } else if(funding.status == 0) { %>
+                                            未达标
+                                        <% } else if (funding.status == -1) { %>
+                                            已失败
+                                        <% } %>
+                                        </p>
+                                    </div>
+                                    <% if(privilege != 0){ %>
+                                        <div>
+                                            <p><b>项目余额：</b><%= funding.balance %> eth</p>
+                                        </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p>&nbsp</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div style="padding-left:50px;padding-right:50px">
+                                    <div>
+                                        <h4><b>当前参与者</b></h4>
+                                    </div>
+                                    <% for(let i = 0;i<funding.investors.length;i++){ %>
+                                        <div>
+                                            <p><%= funding.investors[i] %>  捐赠了<%= funding.support[i] %>eth</p>
+                                        </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p>&nbsp</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div style="padding-left:50px;padding-right:50px">
+                                    <div>
+                                        <h4><b>当前需求</b></h4>
+                                    </div>
+                                    <% if(privilege == 0){ %>
+                                        <div><p>您无权查看</p></div>
+                                    <% }else { %>
+                                        <% for(let i = 0;i<funding.requests.length;i++){ %>
+                                            <% let request = funding.requests[i] %>
+                                            <div>
+                                                <p><%= request.purpose %>:向<%= request.seller %>支付<%= request.cost %>eth</p>
+                                                <% if(privilege != 0 && request.status == 0){ %>
+                                                    <p>已获票数：<%= request.count %>/<%= funding.target %></p>
+                                                <% } %>
+                                                <% if(privilege == 2 && request.status == 0){ %>
+                                                        <button class="btn btn-default"  onclick="approve_request(<%= i %>)"><span class="glyphicon glyphicon-plus"
+                                                            aria-hidden="true"></span>同意</button>
+                                                        <button class="btn btn-default"  onclick="deny_request(<%= i %>)"><span class="glyphicon glyphicon-plus"
+                                                            aria-hidden="true"></span>拒绝</button>
+                                                <% } else if (privilege == 2 && request.status == 1){ %>
+                                                    <p>已获大多数同意，等待执行</p>
+                                                <% } else if (privilege != 0 && request.status == 2){ %>
+                                                    <p>已完成</p>
+                                                <% } else if(privilege == 1 && request.status == 1){ %>
+                                                    <button class="btn btn-default"  onclick="execute_request(<%= i %>)"><span class="glyphicon glyphicon-plus"
+                                                        aria-hidden="true"></span>执行</button>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                        <% if(privilege == 1 && funding.status == 1){ %>
+                                            <button class="btn btn-default"  onclick="show_modal()"><span class="glyphicon glyphicon-plus"
+                                                        aria-hidden="true"></span>创建需求</button>
+                                        <% } %>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p>&nbsp</p>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal_add_request" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        创建需求
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="field">
+                        <label style="color:black;cursor:default">需求目标</label>
+                        <input type="text" name="purpose" placeholder="需求目标">
+                    </div>
+                    <div class="field">
+                        <label style="color:black;cursor:default">出售用户 </label>
+                        <select name="seller">
+                            <% for (let i = 0; i < users.length; i++) { %>
+                                <option value="<%= users[i] %>"><%= users[i] %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label style="color:black;cursor:default">花费金额</label>
+                        <input type="text" name="cost" placeholder="单位(eth)">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="create_request()">
+                        提交
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    <script>
+    function show_modal(){
+        $('#modal_add_request').modal('show');
+    }
+    function create_request(){
+        $.ajax({
+            dataType: "json",
+            type: "post",
+            url: "/createRequest",
+            data: {
+                funding_addr:'<%= funding.address %>',
+                purpose: $("input[name='purpose']").val(),
+                seller: $("select[name='seller']").val(),
+                cost: $("input[name='cost']").val(),
+            },
+            success: (data) => {
+                if (data.status == 1) {
+                alert("新建成功！");
+                window.location.reload();
+                } else alert(data.msg);
+            },
+            error: (err) => {
+                alert("与服务器连接异常，请稍后再试!");
+            },
+        });
+    }
+    function execute_request(index){
+        let addr = '<%= funding.address %>';
+        $.ajax({
+            dataType: "json",
+            type: "post",
+            url: "/executeRequest",
+            data: {
+                address: addr,
+                index:index
+            },
+            success: (data) => {
+                if (data.status == 1) {
+                    alert("执行成功！");
+                    window.location.reload();
+                } else{
+                    alert("执行失败！");
+                    console.log(data.msg);
+                }
+            },
+            error: (err) => {
+                alert("与服务器连接异常，请稍后再试!");
+            },
+        });
+    }
+    function approve_request(index){
+        let addr = '<%= funding.address %>';
+        $.ajax({
+            dataType: "json",
+            type: "post",
+            url: "/approveRequest",
+            data: {
+                address: addr,
+                index: index
+            },
+            success: (data) => {
+                if (data.status == 1) {
+                    alert("成功同意")
+                    window.location.reload();
+                } else{
+                    alert("您已对该需求进行过表态");
+                }
+            },
+            error: (err) => {
+                alert("与服务器连接异常，请稍后再试!");
+            },
+        });
+    }
+    function deny_request(index){
+        let addr = '<%= funding.address %>';
+        $.ajax({
+            dataType: "json",
+            type: "post",
+            url: "/denyRequest",
+            data: {
+                address: addr,
+                index: index
+            },
+            success: (data) => {
+                if (data.status == 1) {
+                    alert("拒绝成功")
+                    window.location.reload();
+                } else{
+                    alert("您已对该需求进行过表态");
+                }
+            },
+            error: (err) => {
+                alert("与服务器连接异常，请稍后再试!");
+            },
+        });
+    }
+    </script>
+</html>
