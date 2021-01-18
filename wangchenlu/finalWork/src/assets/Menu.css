@@ -1,0 +1,31 @@
+.header{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: nowrap;
+    height: 64px;
+    align-items: center;
+    box-shadow: 0px 0px 6px #888888;
+    position: relative;
+    z-index: 999;
+    background-color: #ffffff;
+    padding-right: 15px;
+}
+
+.title{
+    font-size: x-large;
+    margin-left: 5px;
+    margin-right: 15px;
+    white-space:nowrap;
+}
+
+.label{
+    display: flex;
+    flex-flow: row nowrap;
+    margin-left: 10%;
+    margin-top: 15px;
+    align-items: center;
+}
